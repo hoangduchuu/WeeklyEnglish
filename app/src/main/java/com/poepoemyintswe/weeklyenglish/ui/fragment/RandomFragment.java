@@ -1,4 +1,4 @@
-package com.poepoemyintswe.weeklyenglish.ui;
+package com.poepoemyintswe.weeklyenglish.ui.fragment;
 
 import android.os.Build;
 import android.os.Bundle;

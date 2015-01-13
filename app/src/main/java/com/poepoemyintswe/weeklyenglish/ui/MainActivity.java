@@ -1,4 +1,4 @@
-package com.poepoemyintswe.weeklyenglish;
+package com.poepoemyintswe.weeklyenglish.ui;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,8 +7,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 
-import com.poepoemyintswe.weeklyenglish.ui.NavigationDrawerFragment;
-import com.poepoemyintswe.weeklyenglish.ui.RandomFragment;
+import com.poepoemyintswe.weeklyenglish.R;
+import com.poepoemyintswe.weeklyenglish.ui.fragment.NavigationDrawerFragment;
+import com.poepoemyintswe.weeklyenglish.ui.fragment.RandomFragment;
 
 public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
