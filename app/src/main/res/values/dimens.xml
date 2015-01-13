@@ -1,5 +1,24 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="spacing_micro">4dp</dimen>
+    <dimen name="spacing_minor">8dp</dimen>
+    <dimen name="spacing_major">16dp</dimen>
+    <dimen name="spacing_not_so_massive">18dp</dimen>
+    <dimen name="spacing_massive">24dp</dimen>
+
+    <dimen name="standard_touch_target_size">48dp</dimen>
+
+    <dimen name="text_size_micro">12sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_medium">18sp</dimen>
+    <dimen name="text_size_large">22sp</dimen>
+
+    <dimen name="navigation_drawer_height">160dp</dimen>
+
+    <!--fab-->
+    <dimen name="fab_size_normal">56dp</dimen>
+    <dimen name="fab_size_mini">40dp</dimen>
+    <dimen name="fab_shadow_size">12dp</dimen>
+
+    <dimen name="fab_scroll_threshold">4dp</dimen>
+    <dimen name="fab_elevation_lollipop">8dp</dimen>
 </resources>
