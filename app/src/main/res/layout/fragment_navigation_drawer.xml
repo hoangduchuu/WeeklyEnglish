@@ -3,11 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="start"
+    android:background="@color/text_icon"
     android:orientation="vertical">
   <TextView
       android:id="@+id/drawer_title"
       android:layout_width="match_parent"
-      android:layout_height="160dp"
+      android:layout_height="@dimen/navigation_title_height"
       android:text="@string/app_name"
       android:background="@drawable/drawer_title_bg"
       android:textSize="@dimen/text_size_large"
@@ -18,6 +19,7 @@
       android:id="@+id/drawer_list"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:divider="@color/divider"/>
+      android:divider="@color/divider"
+      android:dividerHeight="0.5dip"/>
 
 </LinearLayout>

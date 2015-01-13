@@ -12,7 +12,7 @@
     <dimen name="text_size_medium">18sp</dimen>
     <dimen name="text_size_large">28sp</dimen>
 
-    <dimen name="navigation_drawer_height">160dp</dimen>
+    <dimen name="navigation_title_height">200dp</dimen>
 
     <!--fab-->
     <dimen name="fab_size_normal">56dp</dimen>
