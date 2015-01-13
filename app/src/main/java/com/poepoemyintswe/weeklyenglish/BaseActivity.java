@@ -21,7 +21,6 @@ public abstract class BaseActivity extends ActionBarActivity {
         if (toolbar != null) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(getHomeEnable());
-            getSupportActionBar().setTitle(getToolbarTitle());
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -32,7 +31,6 @@ public abstract class BaseActivity extends ActionBarActivity {
         }
     }
 
-    protected abstract String getToolbarTitle();
 
     protected abstract int getLayoutResource();
 
