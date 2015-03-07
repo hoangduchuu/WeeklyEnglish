@@ -58,8 +58,7 @@ public class LessonFragment extends Fragment {
     ButterKnife.inject(this, rootView);
     mActivity.swipeRefreshLayoutInit(mSwipeRefreshLayout);
     mActivity.recyclerViewInit(mRecyclerView);
-    mRecyclerView.addItemDecoration(
-        new DividerItemDecoration(mActivity.getResources().getDrawable(R.drawable.divider)));
+    mRecyclerView.addItemDecoration(new DividerItemDecoration(mActivity, null));
     mRecyclerView.setAdapter(adapter);
     return rootView;
   }

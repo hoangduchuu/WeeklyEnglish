@@ -1,5 +1,9 @@
 package com.poepoemyintswe.weeklyenglish.ui.widget;
 
+/**
+ * Created by poepoe on 8/2/15.
+ */
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -10,9 +14,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 
-/**
- * Created by poepoe on 8/2/15.
- */
 public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
   private Drawable mDivider;
@@ -37,7 +38,8 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     mDivider = divider;
   }
 
-  public DividerItemDecoration(Drawable divider, boolean showFirstDivider, boolean showLastDivider) {
+  public DividerItemDecoration(Drawable divider, boolean showFirstDivider,
+      boolean showLastDivider) {
     this(divider);
     mShowFirstDivider = showFirstDivider;
     mShowLastDivider = showLastDivider;
