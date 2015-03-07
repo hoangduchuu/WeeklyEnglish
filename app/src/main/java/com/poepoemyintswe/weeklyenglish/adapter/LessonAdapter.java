@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import butterknife.ButterKnife;
-import butterknife.InjectViews;
+import butterknife.InjectView;
 import com.poepoemyintswe.weeklyenglish.R;
 import com.poepoemyintswe.weeklyenglish.model.Lesson;
 import java.util.List;
@@ -77,7 +77,9 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
 
   public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    @InjectViews({ R.id.id, R.id.title, R.id.explanation }) TextView[] textView;
+    @InjectView(R.id.id) TextView id;
+    @InjectView(R.id.title) TextView title;
+    @InjectView(R.id.explanation) TextView explanation;
 
     public ViewHolder(View itemView) {
       super(itemView);
@@ -85,9 +87,9 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
     }
 
     public void bindLesson(Lesson lesson) {
-      textView[0].setText(lesson.id);
-      textView[1].setText(lesson.title);
-      textView[2].setText(lesson.explanation);
+      id.setText(Integer.toString(lesson.id));
+      title.setText(lesson.title);
+      explanation.setText(lesson.explanation);
     }
 
     @Override public void onClick(View v) {
