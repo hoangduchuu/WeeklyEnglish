@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Weekly English</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+  <string name="app_name">Weekly English</string>
+  <string name="hello_world">Hello world!</string>
+  <string name="action_settings">Settings</string>
 
-    <string-array name="nav_array">
-        <item>Home</item>
-        <item>Lessons</item>
-        <item>Bookmark</item>
-    </string-array>
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
+  <string name="please_check_your_connection">Please check your connection&#8230;</string>
+  <string name="error_unknown">Unknown error occurs&#8230;</string>
+  <string name="error_no_response">Server is not responding&#8230;</string>
 </resources>

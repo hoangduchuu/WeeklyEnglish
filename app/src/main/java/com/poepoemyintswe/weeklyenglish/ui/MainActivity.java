@@ -1,21 +1,31 @@
 package com.poepoemyintswe.weeklyenglish.ui;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import com.poepoemyintswe.weeklyenglish.R;
-import com.poepoemyintswe.weeklyenglish.ui.fragment.RandomFragment;
+import com.poepoemyintswe.weeklyenglish.ui.fragment.LessonFragment;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends BaseActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
 
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction()
-          .add(R.id.container, RandomFragment.getInstance())
+          .add(R.id.container, LessonFragment.getInstance())
           .commit();
     }
+  }
+
+  @Override protected int getLayoutResource() {
+    return R.layout.activity_main;
+  }
+
+  @Override protected boolean getHomeUpEnabled() {
+    return false;
+  }
+
+  @Override protected String getCustomTitle() {
+    return getString(R.string.app_name);
   }
 }
