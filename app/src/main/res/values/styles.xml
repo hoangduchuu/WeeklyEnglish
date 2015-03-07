@@ -15,9 +15,16 @@
     <!-- Customize your theme here. -->
   </style>
 
+  <style name="ActionbarTitleStyle"
+      parent="Base.TextAppearance.AppCompat.Widget.ActionBar.Title">
+    <item name="android:textColor">@color/text_icon</item>
+    <item name="android:padding">@dimen/spacing_micro</item>
+    <item name="android:gravity">center_vertical|left</item>
+    <item name="android:textSize">@dimen/text_size_small</item>
+  </style>
+
   <style name="LessonTitleStyle">
     <item name="android:textSize">@dimen/text_size_medium</item>
-    <item name="android:textStyle">bold</item>
     <item name="android:textColor">@color/primary_text</item>
     <item name="android:gravity">left</item>
     <item name="android:padding">@dimen/spacing_minor</item>
