@@ -16,10 +16,11 @@ import java.util.List;
  */
 public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder> {
 
-  private List<Lesson> lessons;
+  private List<Lesson> data;
 
-  public LessonAdapter(List<Lesson> lessons) {
-    this.lessons = lessons;
+  public LessonAdapter(List<Lesson> data) {
+    setHasStableIds(true);
+    this.data = data;
   }
 
   @Override public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
@@ -33,11 +34,45 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
   }
 
   @Override public int getItemCount() {
-    return lessons.size();
+    return data.size();
   }
 
   private Lesson getItem(int position) {
-    return lessons.get(position);
+    return data.get(position);
+  }
+
+  public void add(Lesson lesson) {
+    insert(lesson, data.size());
+  }
+
+  public void insert(Lesson lesson, int position) {
+    data.add(position, lesson);
+    notifyItemInserted(position);
+    notifyDataSetChanged();
+  }
+
+  public void clear(int size) {
+    data.subList(0, size).clear();
+    notifyItemRangeRemoved(0, size);
+    notifyDataSetChanged();
+  }
+
+  public void clearAll() {
+    data.clear();
+    notifyDataSetChanged();
+  }
+
+  public void remove(int position) {
+    data.remove(position);
+    notifyItemRemoved(position);
+    notifyDataSetChanged();
+  }
+
+  public void addAll(List<Lesson> Data) {
+    int startIndex = data.size();
+    data.addAll(startIndex, Data);
+    notifyItemRangeInserted(startIndex, Data.size());
+    notifyDataSetChanged();
   }
 
   public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

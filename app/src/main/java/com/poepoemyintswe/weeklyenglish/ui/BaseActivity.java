@@ -4,6 +4,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import com.poepoemyintswe.weeklyenglish.R;
@@ -60,5 +62,13 @@ public abstract class BaseActivity extends ActionBarActivity {
         .resolveAttribute(android.support.v7.appcompat.R.attr.actionBarSize, typed_value, true);
     mSwipeRefreshLayout.setProgressViewOffset(false, 0,
         getResources().getDimensionPixelSize(typed_value.resourceId));
+  }
+
+  public void recyclerViewInit(RecyclerView recyclerView) {
+    LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+    layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+    layoutManager.scrollToPosition(0);
+    layoutManager.setSmoothScrollbarEnabled(true);
+    recyclerView.setLayoutManager(layoutManager);
   }
 }
