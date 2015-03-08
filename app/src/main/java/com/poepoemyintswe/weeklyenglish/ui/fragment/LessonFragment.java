@@ -1,5 +1,6 @@
 package com.poepoemyintswe.weeklyenglish.ui.fragment;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
@@ -66,6 +67,8 @@ public class LessonFragment extends Fragment {
     View rootView = inflater.inflate(R.layout.fragment_main, container, false);
     ButterKnife.inject(this, rootView);
 
+    String[] colors = mActivity.getPrimaryColor();
+    toolbar.setBackgroundColor(Color.parseColor(colors[0]));
     mActivity.setSupportActionBar(toolbar);
     ActionBar actionBar = mActivity.getSupportActionBar();
     actionBar.setTitle("");
@@ -79,7 +82,7 @@ public class LessonFragment extends Fragment {
       SystemBarTintManager tintManager = new SystemBarTintManager(mActivity);
       tintManager.setStatusBarTintEnabled(true);
       tintManager.setNavigationBarTintEnabled(true);
-      tintManager.setTintColor(getResources().getColor(R.color.primary_dark));
+      tintManager.setTintColor(Color.parseColor(colors[1]));
     }
 
     mActivity.swipeRefreshLayoutInit(mSwipeRefreshLayout);

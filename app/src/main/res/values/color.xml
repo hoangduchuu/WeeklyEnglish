@@ -9,8 +9,44 @@
   <color name="secondary_text">#727272</color>
   <color name="divider">#B6B6B6</color>
 
-  <color name="swipe_refresh_color1">#ff0f9d58</color>
-  <color name="swipe_refresh_color2">#ffdb4437</color>
-  <color name="swipe_refresh_color3">#ff4285f4</color>
-  <color name="swipe_refresh_color4">#fff4b400</color>
+  <color name="green">#ff0f9d58</color>
+  <color name="red">#ffdb4437</color>
+  <color name="blue">#ff4285f4</color>
+  <color name="yellow">#fff4b400</color>
+
+  <string-array name="primary_colors">
+    <item>F44336</item>
+    <item>E91E63</item>
+    <item>9C27B0</item>
+    <item>673AB7</item>
+    <item>3F51B5</item>
+    <item>2196F3</item>
+    <item>03A9F4</item>
+    <item>00BCD4</item>
+    <item>009688</item>
+    <item>4CAF50</item>
+    <item>FF5722</item>
+    <item>795548</item>
+    <item>607D8B</item>
+    <item>558B2F</item>
+    <item>EF6C00</item>
+
+  </string-array>
+  <string-array name="primary_dark_colors">
+    <item>D32F2F</item>
+    <item>C2185B</item>
+    <item>7B1FA2</item>
+    <item>512DA8</item>
+    <item>303F9F</item>
+    <item>1976D2</item>
+    <item>0288D1</item>
+    <item>0097A7</item>
+    <item>00796B</item>
+    <item>388E3C</item>
+    <item>E64A19</item>
+    <item>5D4037</item>
+    <item>455A64</item>
+    <item>33691E</item>
+    <item>E65100</item>
+  </string-array>
 </resources>

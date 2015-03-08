@@ -13,6 +13,7 @@ import android.util.TypedValue;
 import com.poepoemyintswe.weeklyenglish.R;
 import com.poepoemyintswe.weeklyenglish.ui.fragment.LessonFragment;
 import com.poepoemyintswe.weeklyenglish.ui.fragment.NavigationDrawerFragment;
+import java.util.Random;
 
 public class MainActivity extends ActionBarActivity
     implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -67,8 +68,8 @@ public class MainActivity extends ActionBarActivity
   }
 
   public void swipeRefreshLayoutInit(SwipeRefreshLayout mSwipeRefreshLayout) {
-    mSwipeRefreshLayout.setColorSchemeResources(R.color.swipe_refresh_color1,
-        R.color.swipe_refresh_color2, R.color.swipe_refresh_color3, R.color.swipe_refresh_color4);
+    mSwipeRefreshLayout.setColorSchemeResources(R.color.green, R.color.red, R.color.blue,
+        R.color.yellow);
     TypedValue typed_value = new TypedValue();
     this.getTheme()
         .resolveAttribute(android.support.v7.appcompat.R.attr.actionBarSize, typed_value, true);
@@ -82,5 +83,15 @@ public class MainActivity extends ActionBarActivity
     layoutManager.scrollToPosition(0);
     layoutManager.setSmoothScrollbarEnabled(true);
     recyclerView.setLayoutManager(layoutManager);
+  }
+
+  public String[] getPrimaryColor() {
+    String[] myColors = getResources().getStringArray(R.array.primary_colors);
+    String[] myColorDark = getResources().getStringArray(R.array.primary_dark_colors);
+    String[] colors = new String[2];
+    int random = new Random().nextInt(myColors.length);
+    colors[0] = "#" + myColors[random];
+    colors[1] = "#" + myColorDark[random];
+    return colors;
   }
 }
