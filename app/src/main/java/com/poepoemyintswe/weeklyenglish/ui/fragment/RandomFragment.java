@@ -19,6 +19,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.poepoemyintswe.weeklyenglish.R;
 import com.poepoemyintswe.weeklyenglish.ui.MainActivity;
+import com.poepoemyintswe.weeklyenglish.ui.widget.SecretTextView;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import mm.technomation.tmmtextutilities.mmtext;
 
@@ -33,8 +34,8 @@ public class RandomFragment extends Fragment {
   @InjectView(R.id.swipe_to_refresh) SwipeRefreshLayout mSwipeRefreshLayout;
   @InjectView(R.id.toolbar) Toolbar toolbar;
   @InjectView(R.id.actionbar_title) TextView title;
-  @InjectView(R.id.eng) TextView eng;
-  @InjectView(R.id.my) TextView my;
+  @InjectView(R.id.eng) SecretTextView eng;
+  @InjectView(R.id.my) SecretTextView my;
   @InjectView(R.id.random_bg) LinearLayout bg;
 
   private MainActivity mActivity;
@@ -78,7 +79,8 @@ public class RandomFragment extends Fragment {
       window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
       window.setStatusBarColor(Color.parseColor(colors[1]));
     }
-
+    eng.show();
+    my.show();
     bg.setBackgroundColor(Color.parseColor(colors[0]));
     mActivity.swipeRefreshLayoutInit(mSwipeRefreshLayout);
     return rootView;
