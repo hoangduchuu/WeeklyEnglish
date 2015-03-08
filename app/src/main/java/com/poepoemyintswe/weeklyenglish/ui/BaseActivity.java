@@ -3,12 +3,8 @@ package com.poepoemyintswe.weeklyenglish.ui;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.TypedValue;
 import android.widget.TextView;
 import com.poepoemyintswe.weeklyenglish.R;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
@@ -46,33 +42,5 @@ public abstract class BaseActivity extends ActionBarActivity {
 
   protected abstract String getCustomTitle();
 
-  public void startRefreshing(SwipeRefreshLayout swipeRefreshLayout) {
-    if (!swipeRefreshLayout.isRefreshing()) {
-      swipeRefreshLayout.setRefreshing(true);
-    }
-  }
 
-  public void stopRefreshing(SwipeRefreshLayout swipeRefreshLayout) {
-    if (swipeRefreshLayout.isRefreshing()) {
-      swipeRefreshLayout.setRefreshing(false);
-    }
-  }
-
-  public void swipeRefreshLayoutInit(SwipeRefreshLayout mSwipeRefreshLayout) {
-    mSwipeRefreshLayout.setColorSchemeResources(R.color.swipe_refresh_color1,
-        R.color.swipe_refresh_color2, R.color.swipe_refresh_color3, R.color.swipe_refresh_color4);
-    TypedValue typed_value = new TypedValue();
-    this.getTheme()
-        .resolveAttribute(android.support.v7.appcompat.R.attr.actionBarSize, typed_value, true);
-    mSwipeRefreshLayout.setProgressViewOffset(false, 0,
-        getResources().getDimensionPixelSize(typed_value.resourceId));
-  }
-
-  public void recyclerViewInit(RecyclerView recyclerView) {
-    LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-    layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-    layoutManager.scrollToPosition(0);
-    layoutManager.setSmoothScrollbarEnabled(true);
-    recyclerView.setLayoutManager(layoutManager);
-  }
 }
