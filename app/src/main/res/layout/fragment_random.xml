@@ -6,12 +6,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".LessonFragment"
+    android:id="@+id/random_bg"
     >
   <include
       android:id="@+id/toolbar"
       layout="@layout/toolbar"
       />
-  <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  <android.support.v4.widget.SwipeRefreshLayout
+      android:id="@+id/swipe_to_refresh"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       >
@@ -23,21 +25,20 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:orientation="vertical"
+          android:layout_gravity="center_vertical"
           >
         <TextView
             android:id="@+id/eng"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/spacing_minor"
-            android:padding="@dimen/spacing_major"
-            style="@style/ExplanationTextStyle"
+            style="@style/EngTextStyle"
             android:fontFamily="sans-serif-condensed"
             />
         <TextView
             android:id="@+id/my"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/ExplanationTextStyle"
+            style="@style/MyanTextStyle"
             android:padding="@dimen/spacing_major"
             />
       </LinearLayout>

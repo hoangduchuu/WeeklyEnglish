@@ -28,17 +28,20 @@
   </style>
 
   <style name="EngTextStyle">
-    <item name="android:textSize">@dimen/text_size_medium</item>
+    <item name="android:textSize">@dimen/text_size_large</item>
     <item name="android:textColor">@color/text_icon</item>
     <item name="android:gravity">center</item>
-    <item name="android:padding">@dimen/spacing_major</item>
+    <item name="android:paddingLeft">@dimen/spacing_minor</item>
+    <item name="android:paddingRight">@dimen/spacing_minor</item>
   </style>
 
   <style name="MyanTextStyle">
-    <item name="android:textSize">@dimen/text_size_small</item>
+    <item name="android:textSize">@dimen/text_size_medium</item>
     <item name="android:textColor">@color/text_icon</item>
     <item name="android:gravity">center</item>
-    <item name="android:padding">@dimen/spacing_major</item>
+    <item name="android:paddingLeft">@dimen/spacing_minor</item>
+    <item name="android:paddingRight">@dimen/spacing_minor</item>
+    <item name="android:paddingTop">@dimen/spacing_major</item>
   </style>
 
 </resources>

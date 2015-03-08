@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -34,6 +35,7 @@ public class RandomFragment extends Fragment {
   @InjectView(R.id.actionbar_title) TextView title;
   @InjectView(R.id.eng) TextView eng;
   @InjectView(R.id.my) TextView my;
+  @InjectView(R.id.random_bg) LinearLayout bg;
 
   private MainActivity mActivity;
 
@@ -77,6 +79,7 @@ public class RandomFragment extends Fragment {
       window.setStatusBarColor(Color.parseColor(colors[1]));
     }
 
+    bg.setBackgroundColor(Color.parseColor(colors[0]));
     mActivity.swipeRefreshLayoutInit(mSwipeRefreshLayout);
     return rootView;
   }
@@ -84,7 +87,8 @@ public class RandomFragment extends Fragment {
   @Override public void onStart() {
     super.onStart();
     eng.setText("I wanna go to Mandalay");
-    my.setText("ကျွန်တော်မန္တလေးသွားချင်တယ်။");
+
+    my.setText("ကျွန်တော် မန္တလေး သွားချင်တယ်။");
     mmtext.prepareView(mActivity, my, mmtext.TEXT_UNICODE, true, true);
   }
 }
