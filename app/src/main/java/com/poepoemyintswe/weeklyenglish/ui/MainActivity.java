@@ -13,12 +13,15 @@ import android.util.TypedValue;
 import com.poepoemyintswe.weeklyenglish.R;
 import com.poepoemyintswe.weeklyenglish.ui.fragment.LessonFragment;
 import com.poepoemyintswe.weeklyenglish.ui.fragment.NavigationDrawerFragment;
+import com.poepoemyintswe.weeklyenglish.ui.fragment.RandomFragment;
 import java.util.Random;
 
 public class MainActivity extends ActionBarActivity
     implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
   private Fragment fragment = null;
+
+  private final int random = new Random().nextInt(15);
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,7 @@ public class MainActivity extends ActionBarActivity
   public void onNavigationDrawerItemSelected(int position) {
     switch (position) {
       case 0:
-        fragment = LessonFragment.getInstance();
+        fragment = RandomFragment.getInstance();
         break;
       case 1:
         fragment = LessonFragment.getInstance();
@@ -89,7 +92,6 @@ public class MainActivity extends ActionBarActivity
     String[] myColors = getResources().getStringArray(R.array.primary_colors);
     String[] myColorDark = getResources().getStringArray(R.array.primary_dark_colors);
     String[] colors = new String[2];
-    int random = new Random().nextInt(myColors.length);
     colors[0] = "#" + myColors[random];
     colors[1] = "#" + myColorDark[random];
     return colors;

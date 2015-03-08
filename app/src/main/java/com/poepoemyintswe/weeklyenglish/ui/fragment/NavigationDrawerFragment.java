@@ -3,6 +3,7 @@ package com.poepoemyintswe.weeklyenglish.ui.fragment;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -20,8 +21,11 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.poepoemyintswe.weeklyenglish.R;
+import com.poepoemyintswe.weeklyenglish.ui.MainActivity;
 
 public class NavigationDrawerFragment extends Fragment {
+
+  private MainActivity mActivity;
 
   private static final String STATE_SELECTED_POSITION = "selected_navigation_drawer_position";
   private static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
@@ -46,6 +50,7 @@ public class NavigationDrawerFragment extends Fragment {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    mActivity = (MainActivity) getActivity();
 
     SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
     mUserLearnedDrawer = sp.getBoolean(PREF_USER_LEARNED_DRAWER, false);
@@ -71,6 +76,7 @@ public class NavigationDrawerFragment extends Fragment {
     View view = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
     ButterKnife.inject(this, view);
     mDrawerTitle.setPadding(0, getStatusBarHeight(), 0, 0);
+    mDrawerTitle.setBackgroundColor(Color.parseColor(mActivity.getPrimaryColor()[0]));
     mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
       @Override
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
