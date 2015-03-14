@@ -18,7 +18,7 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.poepoemyintswe.weeklyenglish.R;
-import com.poepoemyintswe.weeklyenglish.ui.MainActivity;
+import com.poepoemyintswe.weeklyenglish.ui.BaseActivity;
 import com.poepoemyintswe.weeklyenglish.ui.widget.SecretTextView;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import mm.technomation.tmmtextutilities.mmtext;
@@ -38,7 +38,7 @@ public class RandomFragment extends Fragment {
   @InjectView(R.id.my) SecretTextView my;
   @InjectView(R.id.random_bg) LinearLayout bg;
 
-  private MainActivity mActivity;
+  private BaseActivity mActivity;
 
   public static RandomFragment getInstance() {
     return new RandomFragment();
@@ -48,7 +48,7 @@ public class RandomFragment extends Fragment {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setHasOptionsMenu(true);
-    mActivity = (MainActivity) getActivity();
+    mActivity = (BaseActivity) getActivity();
   }
 
   @Override
