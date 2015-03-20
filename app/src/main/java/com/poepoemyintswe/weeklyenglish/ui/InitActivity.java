@@ -16,7 +16,6 @@ import com.poepoemyintswe.weeklyenglish.utils.CustomRestAdapter;
 import com.poepoemyintswe.weeklyenglish.utils.NetworkConnectivityCheck;
 import com.poepoemyintswe.weeklyenglish.utils.SharePref;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
-import javax.inject.Inject;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -26,10 +25,9 @@ import static com.poepoemyintswe.weeklyenglish.utils.LogUtils.makeLogTag;
 
 public class InitActivity extends BaseActivity {
 
-  private final String TAG = makeLogTag(InjectView.class);
+  private final String TAG = makeLogTag(InitActivity.class);
 
   @InjectView(R.id.progress_bar) ProgressWheel progressWheel;
-  @Inject SharePref sharePref;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -50,7 +48,7 @@ public class InitActivity extends BaseActivity {
       window.setStatusBarColor(Color.parseColor(colors[1]));
     }
 
-    if (sharePref.isFirstTime()) {
+    if (SharePref.getInstance(this).isFirstTime()) {
       downloadData();
     } else {
       Intent mainIntent = new Intent(InitActivity.this, MainActivity.class);
