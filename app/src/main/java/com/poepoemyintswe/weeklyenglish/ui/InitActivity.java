@@ -11,7 +11,7 @@ import butterknife.InjectView;
 import com.pnikosis.materialishprogress.ProgressWheel;
 import com.poepoemyintswe.weeklyenglish.R;
 import com.poepoemyintswe.weeklyenglish.api.LessonService;
-import com.poepoemyintswe.weeklyenglish.model.Data;
+import com.poepoemyintswe.weeklyenglish.db.DataDao;
 import com.poepoemyintswe.weeklyenglish.utils.CustomRestAdapter;
 import com.poepoemyintswe.weeklyenglish.utils.NetworkConnectivityCheck;
 import com.poepoemyintswe.weeklyenglish.utils.SharePref;
@@ -64,15 +64,16 @@ public class InitActivity extends BaseActivity {
     if (NetworkConnectivityCheck.getInstance(this).isConnected()) {
       LessonService lessonService =
           CustomRestAdapter.getInstance(this).normalRestAdapter().create(LessonService.class);
-      lessonService.getLessons(new Callback<Data>() {
-        @Override public void success(Data data, Response response) {
+      lessonService.getLessons(new Callback<DataDao>() {
+        @Override public void success(DataDao data, Response response) {
 
+          realm.beginTransaction();
+          realm.copyToRealm(data);
+          realm.commitTransaction();
           LOGE(TAG, "Response == " + response.getStatus());
           Intent mainIntent = new Intent(InitActivity.this, MainActivity.class);
           InitActivity.this.startActivity(mainIntent);
           InitActivity.this.finish();
-          realm.beginTransaction();
-          realm.commitTransaction();
         }
 
         @Override public void failure(RetrofitError error) {

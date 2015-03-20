@@ -20,7 +20,7 @@ import butterknife.InjectView;
 import com.poepoemyintswe.weeklyenglish.R;
 import com.poepoemyintswe.weeklyenglish.adapter.LessonAdapter;
 import com.poepoemyintswe.weeklyenglish.api.LessonService;
-import com.poepoemyintswe.weeklyenglish.model.Data;
+import com.poepoemyintswe.weeklyenglish.db.DataDao;
 import com.poepoemyintswe.weeklyenglish.model.Lesson;
 import com.poepoemyintswe.weeklyenglish.ui.MainActivity;
 import com.poepoemyintswe.weeklyenglish.ui.widget.DividerItemDecoration;
@@ -103,10 +103,9 @@ public class LessonFragment extends Fragment {
       mActivity.startRefreshing(mSwipeRefreshLayout);
       LessonService lessonService =
           CustomRestAdapter.getInstance(mActivity).normalRestAdapter().create(LessonService.class);
-      lessonService.getLessons(new Callback<Data>() {
-        @Override public void success(Data data, Response response) {
+      lessonService.getLessons(new Callback<DataDao>() {
+        @Override public void success(DataDao data, Response response) {
           mActivity.stopRefreshing(mSwipeRefreshLayout);
-          adapter.addAll(data.lessons);
         }
 
         @Override public void failure(RetrofitError error) {
