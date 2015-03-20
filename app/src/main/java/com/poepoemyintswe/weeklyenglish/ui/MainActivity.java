@@ -15,9 +15,7 @@ public class MainActivity extends BaseActivity
 
   private Fragment fragment = null;
 
-
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
+  @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
     NavigationDrawerFragment mNavigationDrawerFragment =
@@ -46,8 +44,7 @@ public class MainActivity extends BaseActivity
     return false;
   }
 
-  @Override
-  public void onNavigationDrawerItemSelected(int position) {
+  @Override public void onNavigationDrawerItemSelected(int position) {
     switch (position) {
       case 0:
         fragment = RandomFragment.getInstance();
@@ -58,13 +55,10 @@ public class MainActivity extends BaseActivity
     }
 
     new Handler().postDelayed(new Runnable() {
-      @Override
-      public void run() {
+      @Override public void run() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
       }
     }, 300);
   }
-
-
 }

@@ -19,8 +19,7 @@ public class RetrofitErrorHandler implements ErrorHandler {
     this.ctx = ctx;
   }
 
-  @Override
-  public Throwable handleError(RetrofitError cause) {
+  @Override public Throwable handleError(RetrofitError cause) {
     String errorDescription;
 
     if (cause.isNetworkError()) {

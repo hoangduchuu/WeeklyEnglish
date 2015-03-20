@@ -45,8 +45,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     mShowLastDivider = showLastDivider;
   }
 
-  @Override
-  public void getItemOffsets(Rect outRect, View view, RecyclerView parent,
+  @Override public void getItemOffsets(Rect outRect, View view, RecyclerView parent,
       RecyclerView.State state) {
     super.getItemOffsets(outRect, view, parent, state);
     if (mDivider == null) {
@@ -63,8 +62,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     }
   }
 
-  @Override
-  public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
+  @Override public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
     if (mDivider == null) {
       super.onDrawOver(c, parent, state);
       return;

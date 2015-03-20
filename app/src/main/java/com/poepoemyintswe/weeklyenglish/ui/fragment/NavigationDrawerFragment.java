@@ -25,18 +25,13 @@ import com.poepoemyintswe.weeklyenglish.ui.MainActivity;
 
 public class NavigationDrawerFragment extends Fragment {
 
-  private MainActivity mActivity;
-
   private static final String STATE_SELECTED_POSITION = "selected_navigation_drawer_position";
   private static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
-
-  private NavigationDrawerCallbacks mCallbacks;
-
-  private ActionBarDrawerToggle mDrawerToggle;
-
   @InjectView(R.id.drawer_list) ListView mDrawerListView;
   @InjectView(R.id.drawer_title) TextView mDrawerTitle;
-
+  private MainActivity mActivity;
+  private NavigationDrawerCallbacks mCallbacks;
+  private ActionBarDrawerToggle mDrawerToggle;
   private DrawerLayout mDrawerLayout;
   private View mFragmentContainerView;
 
@@ -47,8 +42,7 @@ public class NavigationDrawerFragment extends Fragment {
   public NavigationDrawerFragment() {
   }
 
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
+  @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     mActivity = (MainActivity) getActivity();
 
@@ -63,23 +57,20 @@ public class NavigationDrawerFragment extends Fragment {
     selectItem(mCurrentSelectedPosition);
   }
 
-  @Override
-  public void onActivityCreated(Bundle savedInstanceState) {
+  @Override public void onActivityCreated(Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
     // Indicate that this fragment would like to influence the set of actions in the action bar.
     setHasOptionsMenu(true);
   }
 
-  @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+  @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
     ButterKnife.inject(this, view);
     mDrawerTitle.setPadding(0, getStatusBarHeight(), 0, 0);
     mDrawerTitle.setBackgroundColor(Color.parseColor(mActivity.getPrimaryColor()[0]));
     mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-      @Override
-      public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+      @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         selectItem(position);
       }
     });
@@ -101,8 +92,7 @@ public class NavigationDrawerFragment extends Fragment {
     mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
     mDrawerToggle = new ActionBarDrawerToggle(getActivity(), mDrawerLayout, R.drawable.ic_drawer,
         R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
-      @Override
-      public void onDrawerClosed(View drawerView) {
+      @Override public void onDrawerClosed(View drawerView) {
         super.onDrawerClosed(drawerView);
         if (!isAdded()) {
           return;
@@ -111,8 +101,7 @@ public class NavigationDrawerFragment extends Fragment {
         getActivity().supportInvalidateOptionsMenu(); // calls onPrepareOptionsMenu()
       }
 
-      @Override
-      public void onDrawerOpened(View drawerView) {
+      @Override public void onDrawerOpened(View drawerView) {
         super.onDrawerOpened(drawerView);
         if (!isAdded()) {
           return;
@@ -138,8 +127,7 @@ public class NavigationDrawerFragment extends Fragment {
 
     // Defer code dependent on restoration of previous instance state.
     mDrawerLayout.post(new Runnable() {
-      @Override
-      public void run() {
+      @Override public void run() {
         mDrawerToggle.syncState();
       }
     });

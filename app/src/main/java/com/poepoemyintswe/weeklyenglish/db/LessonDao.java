@@ -12,36 +12,36 @@ public class LessonDao extends RealmObject {
   private String title;
   private String explanation;
 
-  public void setId(int id) {
-    this.id = id;
-  }
-
   public int getId() {
     return id;
   }
 
-  public void setTitle(String title) {
-    this.title = title;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getTitle() {
     return title;
   }
 
-  public void setExplanation(String explanation) {
-    this.explanation = explanation;
+  public void setTitle(String title) {
+    this.title = title;
   }
 
   public String getExplanation() {
     return explanation;
   }
 
-  public void setSentences(RealmList<SentenceDao> sentences) {
-    this.sentences = sentences;
+  public void setExplanation(String explanation) {
+    this.explanation = explanation;
   }
 
   public RealmList<SentenceDao> getSentences() {
     return sentences;
+  }
+
+  public void setSentences(RealmList<SentenceDao> sentences) {
+    this.sentences = sentences;
   }
 }
 

@@ -29,8 +29,7 @@ public class InitActivity extends BaseActivity {
 
   @InjectView(R.id.progress_bar) ProgressWheel progressWheel;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
+  @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     ButterKnife.inject(this);
 
@@ -51,8 +50,7 @@ public class InitActivity extends BaseActivity {
 
     new Handler().postDelayed(new Runnable() {
 
-      @Override
-      public void run() {
+      @Override public void run() {
         Intent mainIntent = new Intent(InitActivity.this, MainActivity.class);
         InitActivity.this.startActivity(mainIntent);
         InitActivity.this.finish();

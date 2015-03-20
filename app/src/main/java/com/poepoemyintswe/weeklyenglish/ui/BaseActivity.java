@@ -19,8 +19,7 @@ public abstract class BaseActivity extends ActionBarActivity {
 
   private final int random = new Random().nextInt(15);
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
+  @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(getLayoutResource());
 

@@ -54,8 +54,7 @@ public class LessonFragment extends Fragment {
     return new LessonFragment();
   }
 
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
+  @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setHasOptionsMenu(true);
     mActivity = (MainActivity) getActivity();
@@ -63,8 +62,7 @@ public class LessonFragment extends Fragment {
     adapter = new LessonAdapter(lessons);
   }
 
-  @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+  @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     View rootView = inflater.inflate(R.layout.fragment_lesson, container, false);
     ButterKnife.inject(this, rootView);

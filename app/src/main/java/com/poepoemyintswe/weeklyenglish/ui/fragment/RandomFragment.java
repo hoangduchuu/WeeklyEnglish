@@ -44,15 +44,13 @@ public class RandomFragment extends Fragment {
     return new RandomFragment();
   }
 
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
+  @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setHasOptionsMenu(true);
     mActivity = (BaseActivity) getActivity();
   }
 
-  @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+  @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     View rootView = inflater.inflate(R.layout.fragment_random, container, false);
     ButterKnife.inject(this, rootView);

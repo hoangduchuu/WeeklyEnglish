@@ -9,19 +9,19 @@ public class SentenceDao extends RealmObject {
   private String english;
   private String myanmar;
 
-  public void setEnglish(String english) {
-    this.english = english;
-  }
-
   public String getEnglish() {
     return english;
   }
 
-  public void setMyanmar(String myanmar) {
-    this.myanmar = myanmar;
+  public void setEnglish(String english) {
+    this.english = english;
   }
 
   public String getMyanmar() {
     return myanmar;
+  }
+
+  public void setMyanmar(String myanmar) {
+    this.myanmar = myanmar;
   }
 }

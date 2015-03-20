@@ -18,21 +18,18 @@ import android.widget.TextView;
  * Created by poepoe on 8/3/15.
  */
 public class SecretTextView extends TextView {
+  ValueAnimator animator;
   private String mTextString;
-
   private double[] mAlphas;
   private boolean mIsVisible;
   private boolean mIsTextResetting = false;
-  private int mDuration = 2500;
-
-  ValueAnimator animator;
   ValueAnimator.AnimatorUpdateListener listener = new ValueAnimator.AnimatorUpdateListener() {
-    @Override
-    public void onAnimationUpdate(ValueAnimator valueAnimator) {
+    @Override public void onAnimationUpdate(ValueAnimator valueAnimator) {
       Float percent = (Float) valueAnimator.getAnimatedValue();
       resetSpannableString(mIsVisible ? percent : 2.0f - percent);
     }
   };
+  private int mDuration = 2500;
 
   public SecretTextView(Context context) {
     super(context);
@@ -69,13 +66,13 @@ public class SecretTextView extends TextView {
     animator.start();
   }
 
+  public boolean getIsVisible() {
+    return mIsVisible;
+  }
+
   public void setIsVisible(boolean isVisible) {
     mIsVisible = isVisible;
     resetSpannableString(isVisible ? 2.0f : 0.0f);
-  }
-
-  public boolean getIsVisible() {
-    return mIsVisible;
   }
 
   private void resetSpannableString(double percent) {
@@ -115,8 +112,7 @@ public class SecretTextView extends TextView {
     resetIfNeeded();
   }
 
-  @Override
-  public void setText(CharSequence text, BufferType type) {
+  @Override public void setText(CharSequence text, BufferType type) {
     super.setText(text, type);
     resetIfNeeded();
   }
