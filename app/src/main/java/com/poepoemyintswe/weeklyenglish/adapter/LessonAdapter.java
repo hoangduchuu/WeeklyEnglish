@@ -8,7 +8,7 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.poepoemyintswe.weeklyenglish.R;
-import com.poepoemyintswe.weeklyenglish.model.Lesson;
+import com.poepoemyintswe.weeklyenglish.db.LessonDao;
 import java.util.List;
 
 /**
@@ -16,9 +16,9 @@ import java.util.List;
  */
 public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder> {
 
-  private List<Lesson> data;
+  private List<LessonDao> data;
 
-  public LessonAdapter(List<Lesson> data) {
+  public LessonAdapter(List<LessonDao> data) {
     setHasStableIds(true);
     this.data = data;
   }
@@ -37,15 +37,15 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
     return data.size();
   }
 
-  private Lesson getItem(int position) {
+  private LessonDao getItem(int position) {
     return data.get(position);
   }
 
-  public void add(Lesson lesson) {
+  public void add(LessonDao lesson) {
     insert(lesson, data.size());
   }
 
-  public void insert(Lesson lesson, int position) {
+  public void insert(LessonDao lesson, int position) {
     data.add(position, lesson);
     notifyItemInserted(position);
     notifyDataSetChanged();
@@ -68,7 +68,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
     notifyDataSetChanged();
   }
 
-  public void addAll(List<Lesson> Data) {
+  public void addAll(List<LessonDao> Data) {
     int startIndex = data.size();
     data.addAll(startIndex, Data);
     notifyItemRangeInserted(startIndex, Data.size());
@@ -86,10 +86,10 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
       ButterKnife.inject(this, itemView);
     }
 
-    public void bindLesson(Lesson lesson) {
-      id.setText(Integer.toString(lesson.id));
-      title.setText(lesson.title);
-      explanation.setText(lesson.explanation);
+    public void bindLesson(LessonDao lesson) {
+      //id.setText(Integer.toString(lesson.id));
+      //title.setText(lesson.title);
+      //explanation.setText(lesson.explanation);
     }
 
     @Override public void onClick(View v) {

@@ -21,14 +21,11 @@ import com.poepoemyintswe.weeklyenglish.R;
 import com.poepoemyintswe.weeklyenglish.adapter.LessonAdapter;
 import com.poepoemyintswe.weeklyenglish.api.LessonService;
 import com.poepoemyintswe.weeklyenglish.db.DataDao;
-import com.poepoemyintswe.weeklyenglish.model.Lesson;
 import com.poepoemyintswe.weeklyenglish.ui.MainActivity;
 import com.poepoemyintswe.weeklyenglish.ui.widget.DividerItemDecoration;
 import com.poepoemyintswe.weeklyenglish.utils.CustomRestAdapter;
 import com.poepoemyintswe.weeklyenglish.utils.NetworkConnectivityCheck;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
-import java.util.ArrayList;
-import java.util.List;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -58,8 +55,8 @@ public class LessonFragment extends Fragment {
     super.onCreate(savedInstanceState);
     setHasOptionsMenu(true);
     mActivity = (MainActivity) getActivity();
-    List<Lesson> lessons = new ArrayList<>();
-    adapter = new LessonAdapter(lessons);
+    //List<Lesson> lessons = new ArrayList<>();
+    //adapter = new LessonAdapter(lessons);
   }
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,

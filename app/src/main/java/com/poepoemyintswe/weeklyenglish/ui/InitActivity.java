@@ -17,7 +17,6 @@ import com.poepoemyintswe.weeklyenglish.utils.NetworkConnectivityCheck;
 import com.poepoemyintswe.weeklyenglish.utils.SharePref;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import io.realm.Realm;
-import javax.inject.Inject;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -30,11 +29,13 @@ public class InitActivity extends BaseActivity {
   private final String TAG = makeLogTag(InitActivity.class);
 
   @InjectView(R.id.progress_bar) ProgressWheel progressWheel;
-  @Inject Realm realm;
+  private Realm realm;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     ButterKnife.inject(this);
+
+    realm = Realm.getInstance(this);
 
     String[] colors = getPrimaryColor();
     progressWheel.setBarColor(Color.parseColor(colors[0]));
