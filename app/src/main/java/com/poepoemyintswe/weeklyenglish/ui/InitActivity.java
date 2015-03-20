@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
 import butterknife.ButterKnife;
@@ -15,7 +14,9 @@ import com.poepoemyintswe.weeklyenglish.api.LessonService;
 import com.poepoemyintswe.weeklyenglish.model.Data;
 import com.poepoemyintswe.weeklyenglish.utils.CustomRestAdapter;
 import com.poepoemyintswe.weeklyenglish.utils.NetworkConnectivityCheck;
+import com.poepoemyintswe.weeklyenglish.utils.SharePref;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
+import javax.inject.Inject;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -28,6 +29,7 @@ public class InitActivity extends BaseActivity {
   private final String TAG = makeLogTag(InjectView.class);
 
   @InjectView(R.id.progress_bar) ProgressWheel progressWheel;
+  @Inject SharePref sharePref;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -48,15 +50,13 @@ public class InitActivity extends BaseActivity {
       window.setStatusBarColor(Color.parseColor(colors[1]));
     }
 
-    new Handler().postDelayed(new Runnable() {
-
-      @Override public void run() {
-        Intent mainIntent = new Intent(InitActivity.this, MainActivity.class);
-        InitActivity.this.startActivity(mainIntent);
-        InitActivity.this.finish();
-      }
-    }, 2000);
-    //downloadData();
+    if (sharePref.isFirstTime()) {
+      downloadData();
+    } else {
+      Intent mainIntent = new Intent(InitActivity.this, MainActivity.class);
+      InitActivity.this.startActivity(mainIntent);
+      InitActivity.this.finish();
+    }
   }
 
   private void downloadData() {
@@ -66,6 +66,9 @@ public class InitActivity extends BaseActivity {
       lessonService.getLessons(new Callback<Data>() {
         @Override public void success(Data data, Response response) {
           LOGE(TAG, "Response == " + response.getStatus());
+          Intent mainIntent = new Intent(InitActivity.this, MainActivity.class);
+          InitActivity.this.startActivity(mainIntent);
+          InitActivity.this.finish();
         }
 
         @Override public void failure(RetrofitError error) {
