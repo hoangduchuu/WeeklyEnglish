@@ -16,6 +16,8 @@ import com.poepoemyintswe.weeklyenglish.utils.CustomRestAdapter;
 import com.poepoemyintswe.weeklyenglish.utils.NetworkConnectivityCheck;
 import com.poepoemyintswe.weeklyenglish.utils.SharePref;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
+import io.realm.Realm;
+import javax.inject.Inject;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -28,6 +30,7 @@ public class InitActivity extends BaseActivity {
   private final String TAG = makeLogTag(InitActivity.class);
 
   @InjectView(R.id.progress_bar) ProgressWheel progressWheel;
+  @Inject Realm realm;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -63,10 +66,13 @@ public class InitActivity extends BaseActivity {
           CustomRestAdapter.getInstance(this).normalRestAdapter().create(LessonService.class);
       lessonService.getLessons(new Callback<Data>() {
         @Override public void success(Data data, Response response) {
+
           LOGE(TAG, "Response == " + response.getStatus());
           Intent mainIntent = new Intent(InitActivity.this, MainActivity.class);
           InitActivity.this.startActivity(mainIntent);
           InitActivity.this.finish();
+          realm.beginTransaction();
+          realm.commitTransaction();
         }
 
         @Override public void failure(RetrofitError error) {
