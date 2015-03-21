@@ -1,6 +1,6 @@
 package com.poepoemyintswe.weeklyenglish.adapter;
 
-import android.support.v7.widget.RecyclerView;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,73 +9,37 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.poepoemyintswe.weeklyenglish.R;
 import com.poepoemyintswe.weeklyenglish.db.Lesson;
-import java.util.List;
 
 /**
  * Created by poepoe on 8/3/15.
  */
-public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder> {
+public class LessonAdapter extends RealmAdapter<Lesson, LessonAdapter.ViewHolder> {
 
-  private List<Lesson> data;
+  private final LayoutInflater inflater;
+  private final OnItemClickListener listener;
 
-  public LessonAdapter(List<Lesson> data) {
-    setHasStableIds(true);
-    this.data = data;
+  public LessonAdapter(Context context, OnItemClickListener listener) {
+    this.inflater = LayoutInflater.from(context);
+    this.listener = listener;
   }
 
   @Override public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-    View view =
-        LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_lesson, viewGroup, false);
-    return new ViewHolder(view);
+    return new ViewHolder(inflater.inflate(R.layout.row_lesson, viewGroup, false));
   }
 
   @Override public void onBindViewHolder(ViewHolder viewHolder, int i) {
-    viewHolder.bindLesson(getItem(i));
+    final Lesson lesson = getItem(i);
+    viewHolder.id.setText(Integer.toString(lesson.id));
+    viewHolder.title.setText(lesson.title);
+    viewHolder.explanation.setText(lesson.explanation);
+    viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        listener.onItemClick(lesson);
+      }
+    });
   }
 
-  @Override public int getItemCount() {
-    return data.size();
-  }
-
-  private Lesson getItem(int position) {
-    return data.get(position);
-  }
-
-  public void add(Lesson lesson) {
-    insert(lesson, data.size());
-  }
-
-  public void insert(Lesson lesson, int position) {
-    data.add(position, lesson);
-    notifyItemInserted(position);
-    notifyDataSetChanged();
-  }
-
-  public void clear(int size) {
-    data.subList(0, size).clear();
-    notifyItemRangeRemoved(0, size);
-    notifyDataSetChanged();
-  }
-
-  public void clearAll() {
-    data.clear();
-    notifyDataSetChanged();
-  }
-
-  public void remove(int position) {
-    data.remove(position);
-    notifyItemRemoved(position);
-    notifyDataSetChanged();
-  }
-
-  public void addAll(List<Lesson> Data) {
-    int startIndex = data.size();
-    data.addAll(startIndex, Data);
-    notifyItemRangeInserted(startIndex, Data.size());
-    notifyDataSetChanged();
-  }
-
-  public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+  public static class ViewHolder extends RealmAdapter.ViewHolder {
 
     @InjectView(R.id.id) TextView id;
     @InjectView(R.id.title) TextView title;
@@ -85,15 +49,9 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
       super(itemView);
       ButterKnife.inject(this, itemView);
     }
+  }
 
-    public void bindLesson(Lesson lesson) {
-      //id.setText(Integer.toString(lesson.id));
-      //title.setText(lesson.title);
-      //explanation.setText(lesson.explanation);
-    }
-
-    @Override public void onClick(View v) {
-
-    }
+  public static interface OnItemClickListener {
+    public void onItemClick(Lesson lesson);
   }
 }
