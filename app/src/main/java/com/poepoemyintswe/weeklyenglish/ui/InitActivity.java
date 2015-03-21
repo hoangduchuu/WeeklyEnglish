@@ -54,6 +54,7 @@ public class InitActivity extends BaseActivity {
 
     if (SharePref.getInstance(this).isFirstTime()) {
       downloadData();
+      SharePref.getInstance(this).noLongerFirstTime();
     } else {
       Intent mainIntent = new Intent(InitActivity.this, MainActivity.class);
       InitActivity.this.startActivity(mainIntent);
