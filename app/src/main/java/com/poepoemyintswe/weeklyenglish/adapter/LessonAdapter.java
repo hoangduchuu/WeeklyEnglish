@@ -29,9 +29,9 @@ public class LessonAdapter extends RealmAdapter<Lesson, LessonAdapter.ViewHolder
 
   @Override public void onBindViewHolder(ViewHolder viewHolder, int i) {
     final Lesson lesson = getItem(i);
-    viewHolder.id.setText(Integer.toString(lesson.id));
-    viewHolder.title.setText(lesson.title);
-    viewHolder.explanation.setText(lesson.explanation);
+    viewHolder.id.setText(Integer.toString(lesson.getId()));
+    viewHolder.title.setText(lesson.getTitle());
+    viewHolder.explanation.setText(lesson.getExplanation());
     viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         listener.onItemClick(lesson);

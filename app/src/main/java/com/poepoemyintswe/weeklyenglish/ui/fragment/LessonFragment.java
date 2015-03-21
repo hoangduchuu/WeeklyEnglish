@@ -7,13 +7,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ListView;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -21,11 +21,12 @@ import com.poepoemyintswe.weeklyenglish.R;
 import com.poepoemyintswe.weeklyenglish.adapter.LessonAdapter;
 import com.poepoemyintswe.weeklyenglish.api.LessonService;
 import com.poepoemyintswe.weeklyenglish.db.Data;
+import com.poepoemyintswe.weeklyenglish.db.Lesson;
 import com.poepoemyintswe.weeklyenglish.ui.MainActivity;
-import com.poepoemyintswe.weeklyenglish.ui.widget.DividerItemDecoration;
 import com.poepoemyintswe.weeklyenglish.utils.CustomRestAdapter;
 import com.poepoemyintswe.weeklyenglish.utils.NetworkConnectivityCheck;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
+import io.realm.Realm;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -39,13 +40,14 @@ public class LessonFragment extends Fragment {
 
   private final String TAG = makeLogTag(LessonFragment.class);
 
-  @InjectView(R.id.lesson_list) RecyclerView mRecyclerView;
+  @InjectView(R.id.lesson_list) ListView mListView;
   @InjectView(R.id.swipe_to_refresh) SwipeRefreshLayout mSwipeRefreshLayout;
   @InjectView(R.id.toolbar) Toolbar toolbar;
   @InjectView(R.id.actionbar_title) TextView title;
 
   private MainActivity mActivity;
   private LessonAdapter adapter;
+  private Realm realm;
 
   public static LessonFragment getInstance() {
     return new LessonFragment();
@@ -55,8 +57,7 @@ public class LessonFragment extends Fragment {
     super.onCreate(savedInstanceState);
     setHasOptionsMenu(true);
     mActivity = (MainActivity) getActivity();
-    //List<Lesson> lessons = new ArrayList<>();
-    //adapter = new LessonAdapter(lessons);
+    realm = Realm.getInstance(mActivity);
   }
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -88,9 +89,15 @@ public class LessonFragment extends Fragment {
     }
 
     mActivity.swipeRefreshLayoutInit(mSwipeRefreshLayout);
-    mActivity.recyclerViewInit(mRecyclerView);
-    mRecyclerView.addItemDecoration(new DividerItemDecoration(mActivity, null));
-    mRecyclerView.setAdapter(adapter);
+
+    adapter = new LessonAdapter(mActivity, new LessonAdapter.OnItemClickListener() {
+      @Override public void onItemClick(Lesson lesson) {
+
+      }
+    });
+
+    mListView.setAdapter(adapter);
+    adapter.setResults(realm.where(Lesson.class).findAll());
     return rootView;
   }
 
