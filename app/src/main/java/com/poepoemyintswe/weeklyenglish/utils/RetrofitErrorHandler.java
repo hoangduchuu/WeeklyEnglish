@@ -1,11 +1,12 @@
 package com.poepoemyintswe.weeklyenglish.utils;
 
 import android.content.Context;
-import android.util.Log;
 import com.poepoemyintswe.weeklyenglish.R;
 import com.poepoemyintswe.weeklyenglish.model.ErrorResponse;
 import retrofit.ErrorHandler;
 import retrofit.RetrofitError;
+
+import static com.poepoemyintswe.weeklyenglish.utils.LogUtils.LOGD;
 
 /**
  * Created by poepoe on 7/3/15.
@@ -38,7 +39,7 @@ public class RetrofitErrorHandler implements ErrorHandler {
             errorDescription = ctx.getString(R.string.please_check_your_connection,
                 cause.getResponse().getStatus());
           } catch (Exception ex2) {
-            Log.e(TAG, "handleError: " + ex2.getLocalizedMessage());
+            LOGD(TAG, "handleError: " + ex2.getLocalizedMessage());
             errorDescription = ctx.getString(R.string.error_unknown);
           }
         }
