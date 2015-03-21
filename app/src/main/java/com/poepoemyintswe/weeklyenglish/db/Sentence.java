@@ -5,7 +5,7 @@ import io.realm.RealmObject;
 /**
  * Created by poepoe on 8/3/15.
  */
-public class SentenceDao extends RealmObject {
+public class Sentence extends RealmObject {
   private String english;
   private String myanmar;
 

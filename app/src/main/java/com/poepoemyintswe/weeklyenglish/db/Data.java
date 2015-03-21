@@ -6,14 +6,14 @@ import io.realm.RealmObject;
 /**
  * Created by poepoe on 20/3/15.
  */
-public class DataDao extends RealmObject {
-  private RealmList<LessonDao> lessons;
+public class Data extends RealmObject {
+  private RealmList<Lesson> lessons;
 
-  public RealmList<LessonDao> getLessons() {
+  public RealmList<Lesson> getLessons() {
     return lessons;
   }
 
-  public void setLessons(RealmList<LessonDao> lessons) {
+  public void setLessons(RealmList<Lesson> lessons) {
     this.lessons = lessons;
   }
 }

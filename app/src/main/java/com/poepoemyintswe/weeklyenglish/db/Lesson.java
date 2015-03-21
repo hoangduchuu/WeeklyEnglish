@@ -6,9 +6,9 @@ import io.realm.RealmObject;
 /**
  * Created by poepoe on 8/3/15.
  */
-public class LessonDao extends RealmObject {
+public class Lesson extends RealmObject {
   private int id;
-  private RealmList<SentenceDao> sentences;
+  private RealmList<Sentence> sentences;
   private String title;
   private String explanation;
 
@@ -36,11 +36,11 @@ public class LessonDao extends RealmObject {
     this.explanation = explanation;
   }
 
-  public RealmList<SentenceDao> getSentences() {
+  public RealmList<Sentence> getSentences() {
     return sentences;
   }
 
-  public void setSentences(RealmList<SentenceDao> sentences) {
+  public void setSentences(RealmList<Sentence> sentences) {
     this.sentences = sentences;
   }
 }
