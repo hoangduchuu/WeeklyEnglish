@@ -19,17 +19,10 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.poepoemyintswe.weeklyenglish.R;
 import com.poepoemyintswe.weeklyenglish.adapter.LessonAdapter;
-import com.poepoemyintswe.weeklyenglish.api.LessonService;
-import com.poepoemyintswe.weeklyenglish.db.Data;
 import com.poepoemyintswe.weeklyenglish.db.Lesson;
 import com.poepoemyintswe.weeklyenglish.ui.MainActivity;
-import com.poepoemyintswe.weeklyenglish.utils.CustomRestAdapter;
-import com.poepoemyintswe.weeklyenglish.utils.NetworkConnectivityCheck;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import io.realm.Realm;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 import static com.poepoemyintswe.weeklyenglish.utils.LogUtils.makeLogTag;
 
@@ -99,23 +92,5 @@ public class LessonFragment extends Fragment {
     mListView.setAdapter(adapter);
     adapter.setResults(realm.where(Lesson.class).findAll());
     return rootView;
-  }
-
-  @Override public void onStart() {
-    super.onStart();
-    if (NetworkConnectivityCheck.getInstance(mActivity).isConnected()) {
-      mActivity.startRefreshing(mSwipeRefreshLayout);
-      LessonService lessonService =
-          CustomRestAdapter.getInstance(mActivity).normalRestAdapter().create(LessonService.class);
-      lessonService.getLessons(new Callback<Data>() {
-        @Override public void success(Data data, Response response) {
-          mActivity.stopRefreshing(mSwipeRefreshLayout);
-        }
-
-        @Override public void failure(RetrofitError error) {
-
-        }
-      });
-    }
   }
 }
