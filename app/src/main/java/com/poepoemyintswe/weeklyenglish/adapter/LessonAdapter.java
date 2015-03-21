@@ -39,6 +39,10 @@ public class LessonAdapter extends RealmAdapter<Lesson, LessonAdapter.ViewHolder
     });
   }
 
+  public static interface OnItemClickListener {
+    public void onItemClick(Lesson lesson);
+  }
+
   public static class ViewHolder extends RealmAdapter.ViewHolder {
 
     @InjectView(R.id.id) TextView id;
@@ -49,9 +53,5 @@ public class LessonAdapter extends RealmAdapter<Lesson, LessonAdapter.ViewHolder
       super(itemView);
       ButterKnife.inject(this, itemView);
     }
-  }
-
-  public static interface OnItemClickListener {
-    public void onItemClick(Lesson lesson);
   }
 }

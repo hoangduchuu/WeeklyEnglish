@@ -67,7 +67,6 @@ public class InitActivity extends BaseActivity {
           CustomRestAdapter.getInstance(this).normalRestAdapter().create(LessonService.class);
       lessonService.getLessons(new Callback<Data>() {
         @Override public void success(Data data, Response response) {
-
           realm.beginTransaction();
           realm.copyToRealm(data);
           realm.commitTransaction();

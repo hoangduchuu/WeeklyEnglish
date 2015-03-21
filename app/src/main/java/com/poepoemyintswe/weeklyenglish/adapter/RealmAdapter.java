@@ -14,15 +14,6 @@ import io.realm.RealmResults;
 public abstract class RealmAdapter<E extends RealmObject, VH extends RealmAdapter.ViewHolder>
     extends BaseAdapter {
 
-  public static class ViewHolder {
-    public final View itemView;
-
-    public ViewHolder(View itemView) {
-      this.itemView = itemView;
-      this.itemView.setTag(this);
-    }
-  }
-
   private RealmResults<E> results;
 
   public abstract VH onCreateViewHolder(ViewGroup parent, int viewType);
@@ -63,5 +54,14 @@ public abstract class RealmAdapter<E extends RealmObject, VH extends RealmAdapte
 
   @SuppressWarnings("unchecked") private VH getViewHolder(View view) {
     return (VH) view.getTag();
+  }
+
+  public static class ViewHolder {
+    public final View itemView;
+
+    public ViewHolder(View itemView) {
+      this.itemView = itemView;
+      this.itemView.setTag(this);
+    }
   }
 }
