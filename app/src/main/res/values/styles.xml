@@ -36,6 +36,7 @@
   </style>
 
   <style name="MyanTextStyle">
+    <item name="android:background">@color/text_icon</item>
     <item name="android:textSize">@dimen/text_size_medium</item>
     <item name="android:textColor">@color/primary_text</item>
     <item name="android:gravity">center</item>

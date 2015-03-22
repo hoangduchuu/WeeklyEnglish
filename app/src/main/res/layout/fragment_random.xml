@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -17,41 +18,43 @@
       android:layout_width="match_parent"
       android:layout_height="fill_parent"
       >
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_gravity="center_vertical"
         >
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:layout_weight="1"
-          >
-        <com.poepoemyintswe.weeklyenglish.ui.widget.SecretTextView
-            android:id="@+id/eng"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            style="@style/EngTextStyle"
-            android:fontFamily="sans-serif-condensed"
-            />
-      </LinearLayout>
 
-      <LinearLayout
-          android:background="@color/text_icon"
+      <com.poepoemyintswe.weeklyenglish.ui.widget.SecretTextView
+          android:id="@+id/eng"
+          android:layout_width="match_parent"
+          android:layout_height="160dp"
+          style="@style/EngTextStyle"
+          android:fontFamily="sans-serif-condensed"
+          android:layout_weight="1"
+          />
+      <com.melnykov.fab.FloatingActionButton
+          android:id="@+id/fab"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentRight="true"
+          android:layout_alignBottom="@id/eng"
+          android:layout_marginBottom="-32dp"
+          android:layout_marginRight="20dp"
+          android:src="@drawable/cic_action_content_new"
+          fab:fab_colorNormal="@color/primary"
+          fab:fab_colorPressed="@color/primary_pressed"
+          fab:fab_colorRipple="@color/ripple"
+          />
+      <com.poepoemyintswe.weeklyenglish.ui.widget.SecretTextView
+          android:id="@+id/my"
+          android:layout_below="@id/eng"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          style="@style/MyanTextStyle"
+          android:padding="@dimen/spacing_major"
           android:layout_weight="1"
-          >
-        <com.poepoemyintswe.weeklyenglish.ui.widget.SecretTextView
-            android:id="@+id/my"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            style="@style/MyanTextStyle"
-            android:padding="@dimen/spacing_major"
-            />
-      </LinearLayout>
-    </LinearLayout>
+          />
+    </RelativeLayout>
 
   </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>
