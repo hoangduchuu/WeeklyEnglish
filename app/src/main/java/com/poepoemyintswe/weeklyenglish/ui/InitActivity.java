@@ -12,6 +12,7 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 import com.poepoemyintswe.weeklyenglish.R;
 import com.poepoemyintswe.weeklyenglish.api.LessonService;
 import com.poepoemyintswe.weeklyenglish.db.Data;
+import com.poepoemyintswe.weeklyenglish.db.Lesson;
 import com.poepoemyintswe.weeklyenglish.utils.CustomRestAdapter;
 import com.poepoemyintswe.weeklyenglish.utils.NetworkConnectivityCheck;
 import com.poepoemyintswe.weeklyenglish.utils.SharePref;
@@ -21,7 +22,6 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-import static com.poepoemyintswe.weeklyenglish.utils.LogUtils.LOGD;
 import static com.poepoemyintswe.weeklyenglish.utils.LogUtils.LOGE;
 import static com.poepoemyintswe.weeklyenglish.utils.LogUtils.makeLogTag;
 
@@ -70,7 +70,10 @@ public class InitActivity extends BaseActivity {
           CustomRestAdapter.getInstance(this).normalRestAdapter().create(LessonService.class);
       lessonService.getCount(new Callback<Integer>() {
         @Override public void success(Integer integer, Response response) {
-          LOGD(TAG, Integer.toString(integer));
+          int count = realm.where(Lesson.class).findAll().size();
+          if (integer > count) {
+            downloadData();
+          }
         }
 
         @Override public void failure(RetrofitError error) {
