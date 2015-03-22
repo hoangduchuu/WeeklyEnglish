@@ -56,12 +56,27 @@ public class InitActivity extends BaseActivity {
     if (SharePref.getInstance(this).isFirstTime()) {
       downloadData();
       SharePref.getInstance(this).noLongerFirstTime();
-      LOGD(TAG, "first time");
     } else {
+      getCount();
       Intent mainIntent = new Intent(InitActivity.this, MainActivity.class);
       InitActivity.this.startActivity(mainIntent);
       InitActivity.this.finish();
-      LOGD(TAG, "No longer first time");
+    }
+  }
+
+  private void getCount() {
+    if (NetworkConnectivityCheck.getInstance(this).isConnected()) {
+      LessonService lessonService =
+          CustomRestAdapter.getInstance(this).normalRestAdapter().create(LessonService.class);
+      lessonService.getCount(new Callback<Integer>() {
+        @Override public void success(Integer integer, Response response) {
+          LOGD(TAG, Integer.toString(integer));
+        }
+
+        @Override public void failure(RetrofitError error) {
+
+        }
+      });
     }
   }
 
