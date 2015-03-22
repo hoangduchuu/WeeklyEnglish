@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
@@ -17,10 +18,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 import com.poepoemyintswe.weeklyenglish.R;
 import com.poepoemyintswe.weeklyenglish.ui.BaseActivity;
 import com.poepoemyintswe.weeklyenglish.ui.widget.SecretTextView;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
+import java.util.Locale;
 import mm.technomation.tmmtextutilities.mmtext;
 
 import static com.poepoemyintswe.weeklyenglish.utils.LogUtils.makeLogTag;
@@ -30,6 +33,7 @@ import static com.poepoemyintswe.weeklyenglish.utils.LogUtils.makeLogTag;
  */
 public class RandomFragment extends Fragment {
   private final String TAG = makeLogTag(RandomFragment.class);
+  TextToSpeech mTextToSpeech;
 
   @InjectView(R.id.swipe_to_refresh) SwipeRefreshLayout mSwipeRefreshLayout;
   @InjectView(R.id.toolbar) Toolbar toolbar;
@@ -48,6 +52,13 @@ public class RandomFragment extends Fragment {
     super.onCreate(savedInstanceState);
     setHasOptionsMenu(true);
     mActivity = (BaseActivity) getActivity();
+    mTextToSpeech = new TextToSpeech(mActivity, new TextToSpeech.OnInitListener() {
+      @Override public void onInit(int status) {
+        if (status != TextToSpeech.ERROR) {
+          mTextToSpeech.setLanguage(Locale.UK);
+        }
+      }
+    });
   }
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -84,11 +95,23 @@ public class RandomFragment extends Fragment {
     return rootView;
   }
 
+  @Override public void onPause() {
+    if (mTextToSpeech != null) {
+      mTextToSpeech.stop();
+      mTextToSpeech.shutdown();
+    }
+    super.onPause();
+  }
+
   @Override public void onStart() {
     super.onStart();
     eng.setText("I wanna go to Mandalay");
-
     my.setText("ကျွန်တော် မန္တလေး သွားချင်တယ်။");
     mmtext.prepareView(mActivity, my, mmtext.TEXT_UNICODE, true, true);
+  }
+
+  @OnClick(R.id.play) void speak() {
+    String toSpeak = eng.getText().toString();
+    mTextToSpeech.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null);
   }
 }
