@@ -83,7 +83,7 @@ public class InitActivity extends BaseActivity {
   private void downloadData() {
     if (NetworkConnectivityCheck.getInstance(this).isConnected()) {
       LessonService lessonService =
-          CustomRestAdapter.getInstance(this).normalRestAdapter().create(LessonService.class);
+          CustomRestAdapter.getInstance(this).GsonRestAdapter().create(LessonService.class);
       lessonService.getLessons(new Callback<Data>() {
         @Override public void success(Data data, Response response) {
           realm.beginTransaction();

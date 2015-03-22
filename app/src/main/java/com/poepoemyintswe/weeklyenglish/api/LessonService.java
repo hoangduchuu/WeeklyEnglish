@@ -13,5 +13,5 @@ import static com.poepoemyintswe.weeklyenglish.Config.LESSON_COUNT;
 public interface LessonService {
   @GET(LESSONS) void getLessons(Callback<Data> callback);
 
-  @GET(LESSON_COUNT) void getCount(Callback<Integer> count);
+  @GET(LESSONS + LESSON_COUNT) void getCount(Callback<Integer> count);
 }
