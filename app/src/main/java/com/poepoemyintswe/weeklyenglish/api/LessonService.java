@@ -5,10 +5,13 @@ import retrofit.Callback;
 import retrofit.http.GET;
 
 import static com.poepoemyintswe.weeklyenglish.Config.LESSONS;
+import static com.poepoemyintswe.weeklyenglish.Config.LESSON_COUNT;
 
 /**
  * Created by poepoe on 7/3/15.
  */
 public interface LessonService {
   @GET(LESSONS) void getLessons(Callback<Data> callback);
+
+  @GET(LESSON_COUNT) void getCount(Callback<Integer> count);
 }
