@@ -4,10 +4,12 @@
   <color name="primary_dark">#C2185B</color>
   <color name="primary_light">#F8BBD0</color>
   <color name="accent">#7C4DFF</color>
+  <color name="accent_dark">#651FFF</color>
   <color name="text_icon">#FFFFFF</color>
   <color name="primary_text">#f62b2b2b</color>
   <color name="secondary_text">#727272</color>
   <color name="divider">#B6B6B6</color>
+  <color name="ripple">#B388FF</color>
 
   <color name="green">#ff0f9d58</color>
   <color name="red">#ffdb4437</color>

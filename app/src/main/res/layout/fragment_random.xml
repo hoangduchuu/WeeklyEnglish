@@ -30,7 +30,15 @@
           android:layout_height="160dp"
           style="@style/EngTextStyle"
           android:fontFamily="sans-serif-condensed"
-          android:layout_weight="1"
+          />
+
+      <com.poepoemyintswe.weeklyenglish.ui.widget.SecretTextView
+          android:id="@+id/my"
+          android:layout_below="@id/eng"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          style="@style/MyanTextStyle"
+          android:padding="@dimen/spacing_major"
           />
       <com.melnykov.fab.FloatingActionButton
           android:id="@+id/fab"
@@ -40,19 +48,10 @@
           android:layout_alignBottom="@id/eng"
           android:layout_marginBottom="-32dp"
           android:layout_marginRight="20dp"
-          android:src="@drawable/cic_action_content_new"
-          fab:fab_colorNormal="@color/primary"
-          fab:fab_colorPressed="@color/primary_pressed"
-          fab:fab_colorRipple="@color/ripple"
-          />
-      <com.poepoemyintswe.weeklyenglish.ui.widget.SecretTextView
-          android:id="@+id/my"
-          android:layout_below="@id/eng"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          style="@style/MyanTextStyle"
-          android:padding="@dimen/spacing_major"
-          android:layout_weight="1"
+          android:src="@drawable/ic_play_arrow"
+          fab:fab_colorNormal="@color/accent"
+          fab:fab_colorPressed="@color/accent_dark"
+          fab:fab_colorRipple="@color/divider"
           />
     </RelativeLayout>
 
