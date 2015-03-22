@@ -51,7 +51,7 @@
           android:src="@drawable/ic_play_arrow"
           fab:fab_colorNormal="@color/accent"
           fab:fab_colorPressed="@color/accent_dark"
-          fab:fab_colorRipple="@color/divider"
+          fab:fab_colorRipple="@color/ripple"
           />
     </RelativeLayout>
 
