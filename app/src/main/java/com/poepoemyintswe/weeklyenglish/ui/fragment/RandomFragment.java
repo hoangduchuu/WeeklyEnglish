@@ -20,10 +20,15 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import com.poepoemyintswe.weeklyenglish.R;
+import com.poepoemyintswe.weeklyenglish.db.Sentence;
 import com.poepoemyintswe.weeklyenglish.ui.BaseActivity;
 import com.poepoemyintswe.weeklyenglish.ui.widget.SecretTextView;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
+import io.realm.Realm;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 import java.util.Locale;
+import java.util.Random;
 import mm.technomation.tmmtextutilities.mmtext;
 
 import static com.poepoemyintswe.weeklyenglish.utils.LogUtils.makeLogTag;
@@ -34,7 +39,9 @@ import static com.poepoemyintswe.weeklyenglish.utils.LogUtils.makeLogTag;
 public class RandomFragment extends Fragment {
   private final String TAG = makeLogTag(RandomFragment.class);
   TextToSpeech mTextToSpeech;
-
+  private Realm realm;
+  private RealmResults<Sentence> results;
+  private RealmQuery<Sentence> realmQuery;
   @InjectView(R.id.swipe_to_refresh) SwipeRefreshLayout mSwipeRefreshLayout;
   @InjectView(R.id.toolbar) Toolbar toolbar;
   @InjectView(R.id.actionbar_title) TextView title;
@@ -59,6 +66,9 @@ public class RandomFragment extends Fragment {
         }
       }
     });
+    realm = Realm.getInstance(mActivity);
+    realmQuery = realm.where(Sentence.class);
+    results = realmQuery.findAll();
   }
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -105,8 +115,9 @@ public class RandomFragment extends Fragment {
 
   @Override public void onStart() {
     super.onStart();
-    eng.setText("I wanna go to Mandalay");
-    my.setText("ကျွန်တော် မန္တလေး သွားချင်တယ်။");
+    int random = new Random().nextInt(results.size());
+    eng.setText(results.get(random).getEnglish());
+    my.setText(results.get(random).getMyanmar());
     mmtext.prepareView(mActivity, my, mmtext.TEXT_UNICODE, true, true);
   }
 

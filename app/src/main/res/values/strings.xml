@@ -12,6 +12,7 @@
   <string name="error_unknown">Unknown error occurs&#8230;</string>
   <string name="error_no_response">Server is not responding&#8230;</string>
 
+
   <array name="nav_array">
     <item>Home</item>
     <item>Lessons</item>
