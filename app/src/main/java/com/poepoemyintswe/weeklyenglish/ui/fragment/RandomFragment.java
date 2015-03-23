@@ -74,7 +74,7 @@ public class RandomFragment extends Fragment implements SwipeRefreshLayout.OnRef
       Bundle savedInstanceState) {
     View rootView = inflater.inflate(R.layout.fragment_random, container, false);
     ButterKnife.inject(this, rootView);
-
+    mSwipeRefreshLayout.setOnRefreshListener(this);
     String[] colors = mActivity.getPrimaryColor();
     toolbar.setBackgroundColor(Color.parseColor(colors[0]));
     mActivity.setSupportActionBar(toolbar);
