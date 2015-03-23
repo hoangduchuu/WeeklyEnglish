@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -123,18 +124,21 @@ public class RandomFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
   private void showRandomSentence() {
     int random = new Random().nextInt(results.size());
-    eng.setmDuration(100);
-    my.setmDuration(100);
+    eng.setmDuration(2000);
+    my.setmDuration(2000);
     eng.show();
     my.show();
     eng.setText(results.get(random).getEnglish());
     my.setText(results.get(random).getMyanmar());
     mmtext.prepareView(mActivity, my, mmtext.TEXT_UNICODE, true, true);
-    eng.show();
+    new Handler().postDelayed(new Runnable() {
+      public void run() {
+        if (mSwipeRefreshLayout.isRefreshing()) mSwipeRefreshLayout.setRefreshing(false);
+      }
+    }, 2000);
   }
 
   @Override public void onRefresh() {
     showRandomSentence();
-    if (mSwipeRefreshLayout.isRefreshing()) mSwipeRefreshLayout.setRefreshing(false);
   }
 }
