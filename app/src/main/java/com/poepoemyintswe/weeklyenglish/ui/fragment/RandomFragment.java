@@ -123,6 +123,7 @@ public class RandomFragment extends Fragment implements SwipeRefreshLayout.OnRef
   }
 
   private void showRandomSentence() {
+    if (!mSwipeRefreshLayout.isRefreshing()) mSwipeRefreshLayout.setRefreshing(true);
     int random = new Random().nextInt(results.size());
     eng.setmDuration(2000);
     my.setmDuration(2000);
@@ -133,9 +134,10 @@ public class RandomFragment extends Fragment implements SwipeRefreshLayout.OnRef
     mmtext.prepareView(mActivity, my, mmtext.TEXT_UNICODE, true, true);
     new Handler().postDelayed(new Runnable() {
       public void run() {
+
         if (mSwipeRefreshLayout.isRefreshing()) mSwipeRefreshLayout.setRefreshing(false);
       }
-    }, 2000);
+    }, 3000);
   }
 
   @Override public void onRefresh() {
