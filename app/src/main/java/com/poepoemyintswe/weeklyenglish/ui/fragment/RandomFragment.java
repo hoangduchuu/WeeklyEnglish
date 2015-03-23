@@ -36,12 +36,9 @@ import static com.poepoemyintswe.weeklyenglish.utils.LogUtils.makeLogTag;
 /**
  * Created by poepoe on 8/3/15.
  */
-public class RandomFragment extends Fragment {
+public class RandomFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
   private final String TAG = makeLogTag(RandomFragment.class);
-  TextToSpeech mTextToSpeech;
-  private Realm realm;
-  private RealmResults<Sentence> results;
-  private RealmQuery<Sentence> realmQuery;
+
   @InjectView(R.id.swipe_to_refresh) SwipeRefreshLayout mSwipeRefreshLayout;
   @InjectView(R.id.toolbar) Toolbar toolbar;
   @InjectView(R.id.actionbar_title) TextView title;
@@ -50,6 +47,8 @@ public class RandomFragment extends Fragment {
   @InjectView(R.id.random_bg) LinearLayout bg;
 
   private BaseActivity mActivity;
+  private RealmResults<Sentence> results;
+  TextToSpeech mTextToSpeech;
 
   public static RandomFragment getInstance() {
     return new RandomFragment();
@@ -66,8 +65,8 @@ public class RandomFragment extends Fragment {
         }
       }
     });
-    realm = Realm.getInstance(mActivity);
-    realmQuery = realm.where(Sentence.class);
+    Realm realm = Realm.getInstance(mActivity);
+    RealmQuery<Sentence> realmQuery = realm.where(Sentence.class);
     results = realmQuery.findAll();
   }
 
@@ -98,8 +97,7 @@ public class RandomFragment extends Fragment {
       window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
       window.setStatusBarColor(Color.parseColor(colors[1]));
     }
-    eng.show();
-    my.show();
+
     bg.setBackgroundColor(Color.parseColor(colors[0]));
     mActivity.swipeRefreshLayoutInit(mSwipeRefreshLayout);
     return rootView;
@@ -115,14 +113,28 @@ public class RandomFragment extends Fragment {
 
   @Override public void onStart() {
     super.onStart();
-    int random = new Random().nextInt(results.size());
-    eng.setText(results.get(random).getEnglish());
-    my.setText(results.get(random).getMyanmar());
-    mmtext.prepareView(mActivity, my, mmtext.TEXT_UNICODE, true, true);
+    showRandomSentence();
   }
 
   @OnClick(R.id.play) void speak() {
     String toSpeak = eng.getText().toString();
     mTextToSpeech.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null);
+  }
+
+  private void showRandomSentence() {
+    int random = new Random().nextInt(results.size());
+    eng.setmDuration(100);
+    my.setmDuration(100);
+    eng.show();
+    my.show();
+    eng.setText(results.get(random).getEnglish());
+    my.setText(results.get(random).getMyanmar());
+    mmtext.prepareView(mActivity, my, mmtext.TEXT_UNICODE, true, true);
+    eng.show();
+  }
+
+  @Override public void onRefresh() {
+    showRandomSentence();
+    if (mSwipeRefreshLayout.isRefreshing()) mSwipeRefreshLayout.setRefreshing(false);
   }
 }
