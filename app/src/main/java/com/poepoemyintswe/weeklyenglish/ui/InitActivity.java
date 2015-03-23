@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import butterknife.ButterKnife;
@@ -21,6 +22,8 @@ import io.realm.Realm;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
+import tr.xip.errorview.ErrorView;
+import tr.xip.errorview.RetryListener;
 
 import static com.poepoemyintswe.weeklyenglish.utils.LogUtils.LOGE;
 import static com.poepoemyintswe.weeklyenglish.utils.LogUtils.makeLogTag;
@@ -30,6 +33,7 @@ public class InitActivity extends BaseActivity {
   private final String TAG = makeLogTag(InitActivity.class);
 
   @InjectView(R.id.progress_bar) ProgressWheel progressWheel;
+  @InjectView(R.id.error_view) ErrorView errorView;
   private Realm realm;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +66,13 @@ public class InitActivity extends BaseActivity {
       InitActivity.this.startActivity(mainIntent);
       InitActivity.this.finish();
     }
+
+    errorView.setOnRetryListener(new RetryListener() {
+      @Override public void onRetry() {
+        showHideProgress(true);
+        downloadData();
+      }
+    });
   }
 
   private void getCount() {
@@ -80,7 +91,7 @@ public class InitActivity extends BaseActivity {
         }
 
         @Override public void failure(RetrofitError error) {
-
+          showHideProgress(false);
         }
       });
     }
@@ -102,10 +113,15 @@ public class InitActivity extends BaseActivity {
         }
 
         @Override public void failure(RetrofitError error) {
-
+          showHideProgress(false);
         }
       });
     }
+  }
+
+  private void showHideProgress(boolean show) {
+    progressWheel.setVisibility(show ? View.VISIBLE : View.GONE);
+    errorView.setVisibility(show ? View.GONE : View.VISIBLE);
   }
 
   @Override protected int getLayoutResource() {
