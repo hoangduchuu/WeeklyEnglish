@@ -27,7 +27,8 @@
       <com.poepoemyintswe.weeklyenglish.ui.widget.SecretTextView
           android:id="@+id/eng"
           android:layout_width="match_parent"
-          android:layout_height="160dp"
+          android:layout_height="wrap_content"
+          android:minHeight="180dp"
           style="@style/EngTextStyle"
           android:fontFamily="sans-serif-condensed"
           />
