@@ -72,6 +72,7 @@ public class InitActivity extends BaseActivity {
         @Override public void success(Integer integer, Response response) {
           int count = realm.where(Lesson.class).findAll().size();
           if (integer > count) {
+            realm.clear(Data.class);
             downloadData();
           }
         }
