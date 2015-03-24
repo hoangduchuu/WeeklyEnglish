@@ -17,4 +17,5 @@
     <item>Home</item>
     <item>Lessons</item>
   </array>
+  <string name="title_activity_sentence">Sentence</string>
 </resources>
