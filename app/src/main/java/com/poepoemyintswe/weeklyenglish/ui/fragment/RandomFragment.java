@@ -46,10 +46,9 @@ public class RandomFragment extends Fragment implements SwipeRefreshLayout.OnRef
   @InjectView(R.id.eng) SecretTextView eng;
   @InjectView(R.id.my) SecretTextView my;
   @InjectView(R.id.random_bg) LinearLayout bg;
-
+  TextToSpeech mTextToSpeech;
   private BaseActivity mActivity;
   private RealmResults<Sentence> results;
-  TextToSpeech mTextToSpeech;
 
   public static RandomFragment getInstance() {
     return new RandomFragment();
@@ -134,7 +133,6 @@ public class RandomFragment extends Fragment implements SwipeRefreshLayout.OnRef
     mmtext.prepareView(mActivity, my, mmtext.TEXT_UNICODE, true, true);
     new Handler().postDelayed(new Runnable() {
       public void run() {
-
         if (mSwipeRefreshLayout.isRefreshing()) mSwipeRefreshLayout.setRefreshing(false);
       }
     }, 3000);

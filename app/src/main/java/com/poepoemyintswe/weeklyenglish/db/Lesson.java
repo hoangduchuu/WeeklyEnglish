@@ -16,32 +16,32 @@ public class Lesson extends RealmObject {
     return id;
   }
 
-  public RealmList<Sentence> getSentences() {
-    return sentences;
-  }
-
-  public String getExplanation() {
-    return explanation;
-  }
-
-  public String getTitle() {
-    return title;
-  }
-
   public void setId(int id) {
     this.id = id;
+  }
+
+  public RealmList<Sentence> getSentences() {
+    return sentences;
   }
 
   public void setSentences(RealmList<Sentence> sentences) {
     this.sentences = sentences;
   }
 
-  public void setTitle(String title) {
-    this.title = title;
+  public String getExplanation() {
+    return explanation;
   }
 
   public void setExplanation(String explanation) {
     this.explanation = explanation;
+  }
+
+  public String getTitle() {
+    return title;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
   }
 }
 
