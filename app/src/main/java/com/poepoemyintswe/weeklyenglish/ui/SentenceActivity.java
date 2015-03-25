@@ -1,17 +1,32 @@
 package com.poepoemyintswe.weeklyenglish.ui;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import com.poepoemyintswe.weeklyenglish.R;
 
-public class SentenceActivity extends ActionBarActivity {
+public class SentenceActivity extends BaseActivity {
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_sentence);
+  }
+
+  @Override protected int getLayoutResource() {
+    return R.layout.activity_sentence;
+  }
+
+  @Override protected boolean getHomeUpEnabled() {
+    return true;
+  }
+
+  @Override protected String getCustomTitle() {
+    Intent intent = getIntent();
+    return intent.getStringExtra("title");
+  }
+
+  @Override protected boolean needToolbar() {
+    return true;
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {

@@ -29,7 +29,7 @@ public class SentenceFragment extends Fragment {
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_sentence, container, false);
-    ButterKnife.inject(this, mActivity);
+    ButterKnife.inject(this, view);
     return view;
   }
 }

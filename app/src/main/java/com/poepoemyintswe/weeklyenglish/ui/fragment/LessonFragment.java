@@ -1,5 +1,6 @@
 package com.poepoemyintswe.weeklyenglish.ui.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -21,6 +22,7 @@ import com.poepoemyintswe.weeklyenglish.R;
 import com.poepoemyintswe.weeklyenglish.adapter.LessonAdapter;
 import com.poepoemyintswe.weeklyenglish.db.Lesson;
 import com.poepoemyintswe.weeklyenglish.ui.MainActivity;
+import com.poepoemyintswe.weeklyenglish.ui.SentenceActivity;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import io.realm.Realm;
 
@@ -85,7 +87,9 @@ public class LessonFragment extends Fragment {
 
     adapter = new LessonAdapter(mActivity, new LessonAdapter.OnItemClickListener() {
       @Override public void onItemClick(Lesson lesson) {
-
+        Intent intent = new Intent(mActivity, SentenceActivity.class);
+        intent.putExtra("title", lesson.getTitle());
+        startActivity(intent);
       }
     });
 
