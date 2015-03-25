@@ -4,18 +4,22 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import butterknife.InjectView;
 import com.poepoemyintswe.weeklyenglish.R;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 public class SentenceActivity extends BaseActivity {
+  @InjectView(R.id.toolbar) Toolbar toolbar;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     String[] colors = getPrimaryColor();
+    toolbar.setBackgroundColor(Color.parseColor(colors[0]));
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
       SystemBarTintManager tintManager = new SystemBarTintManager(this);
       tintManager.setStatusBarTintEnabled(true);
