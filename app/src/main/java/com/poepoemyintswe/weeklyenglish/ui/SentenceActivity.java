@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.poepoemyintswe.weeklyenglish.R;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
@@ -18,6 +19,7 @@ public class SentenceActivity extends BaseActivity {
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    ButterKnife.inject(this);
     String[] colors = getPrimaryColor();
     toolbar.setBackgroundColor(Color.parseColor(colors[0]));
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
