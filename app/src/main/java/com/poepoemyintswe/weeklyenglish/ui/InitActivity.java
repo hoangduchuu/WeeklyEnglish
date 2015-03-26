@@ -84,7 +84,7 @@ public class InitActivity extends BaseActivity {
           int count = realm.where(Lesson.class).findAll().size();
           if (integer > count) {
             realm.beginTransaction();
-            realm.where(Lesson.class).findAll().clear();
+            realm.where(Data.class).findAll().clear();
             realm.commitTransaction();
             downloadData();
           }
