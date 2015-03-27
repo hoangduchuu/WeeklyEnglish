@@ -41,6 +41,7 @@ public class LessonFragment extends Fragment {
   @InjectView(R.id.actionbar_title) TextView title;
 
   private BaseActivity mActivity;
+  private LessonAdapter adapter;
   private Realm realm;
 
   public static LessonFragment getInstance() {

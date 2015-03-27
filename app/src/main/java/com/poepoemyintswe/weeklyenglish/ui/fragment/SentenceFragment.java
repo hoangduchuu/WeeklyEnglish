@@ -19,7 +19,6 @@ import io.realm.Realm;
 public class SentenceFragment extends Fragment {
   @InjectView(R.id.sentence_list) ListView sentenceList;
   private BaseActivity mActivity;
-  private LessonAdapter adapter;
   private Realm realm;
 
   @Override public void onCreate(Bundle savedInstanceState) {
