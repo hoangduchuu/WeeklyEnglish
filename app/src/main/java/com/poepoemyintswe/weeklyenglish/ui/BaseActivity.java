@@ -4,6 +4,8 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.widget.TextView;
@@ -73,5 +75,13 @@ public abstract class BaseActivity extends ActionBarActivity {
     colors[0] = "#" + myColors[random];
     colors[1] = "#" + myColorDark[random];
     return colors;
+  }
+
+  public void recyclerViewInit(RecyclerView recyclerView) {
+    LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+    layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+    layoutManager.scrollToPosition(0);
+    layoutManager.setSmoothScrollbarEnabled(true);
+    recyclerView.setLayoutManager(layoutManager);
   }
 }
