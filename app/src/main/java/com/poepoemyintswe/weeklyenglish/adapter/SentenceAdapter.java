@@ -16,8 +16,8 @@ import io.realm.RealmList;
  */
 public class SentenceAdapter extends RecyclerView.Adapter<SentenceAdapter.ViewHolder> {
 
-  private RealmList<Sentence> sentences;
   private final OnItemClickListener listener;
+  private RealmList<Sentence> sentences;
 
   public SentenceAdapter(OnItemClickListener listener) {
     setHasStableIds(true);
