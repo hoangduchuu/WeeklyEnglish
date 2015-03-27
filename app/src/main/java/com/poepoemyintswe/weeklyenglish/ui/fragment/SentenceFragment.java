@@ -9,6 +9,8 @@ import android.widget.ListView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.poepoemyintswe.weeklyenglish.R;
+import com.poepoemyintswe.weeklyenglish.adapter.SentenceAdapter;
+import com.poepoemyintswe.weeklyenglish.db.Sentence;
 import com.poepoemyintswe.weeklyenglish.ui.BaseActivity;
 import io.realm.Realm;
 
@@ -19,16 +21,26 @@ public class SentenceFragment extends Fragment {
   @InjectView(R.id.sentence_list) ListView sentenceList;
   private BaseActivity mActivity;
   private Realm realm;
+  private SentenceAdapter adapter;
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     mActivity = (BaseActivity) getActivity();
+    realm = Realm.getInstance(mActivity);
   }
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_sentence, container, false);
     ButterKnife.inject(this, view);
+
+    adapter = new SentenceAdapter(mActivity, new SentenceAdapter.OnItemClickListener() {
+      @Override public void onItemClick(Sentence sentence) {
+
+      }
+    });
+
+    sentenceList.setAdapter(adapter);
     return view;
   }
 }
