@@ -21,7 +21,7 @@ import butterknife.InjectView;
 import com.poepoemyintswe.weeklyenglish.R;
 import com.poepoemyintswe.weeklyenglish.adapter.LessonAdapter;
 import com.poepoemyintswe.weeklyenglish.db.Lesson;
-import com.poepoemyintswe.weeklyenglish.ui.MainActivity;
+import com.poepoemyintswe.weeklyenglish.ui.BaseActivity;
 import com.poepoemyintswe.weeklyenglish.ui.SentenceActivity;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import io.realm.Realm;
@@ -40,8 +40,7 @@ public class LessonFragment extends Fragment {
   @InjectView(R.id.toolbar) Toolbar toolbar;
   @InjectView(R.id.actionbar_title) TextView title;
 
-  private MainActivity mActivity;
-  private LessonAdapter adapter;
+  private BaseActivity mActivity;
   private Realm realm;
 
   public static LessonFragment getInstance() {
@@ -51,7 +50,7 @@ public class LessonFragment extends Fragment {
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setHasOptionsMenu(true);
-    mActivity = (MainActivity) getActivity();
+    mActivity = (BaseActivity) getActivity();
     realm = Realm.getInstance(mActivity);
   }
 

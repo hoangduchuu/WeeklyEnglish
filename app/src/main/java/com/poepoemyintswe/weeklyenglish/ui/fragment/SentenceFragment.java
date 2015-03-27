@@ -9,21 +9,22 @@ import android.widget.ListView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.poepoemyintswe.weeklyenglish.R;
-import com.poepoemyintswe.weeklyenglish.ui.SentenceActivity;
+import com.poepoemyintswe.weeklyenglish.adapter.LessonAdapter;
+import com.poepoemyintswe.weeklyenglish.ui.BaseActivity;
+import io.realm.Realm;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class SentenceFragment extends Fragment {
   @InjectView(R.id.sentence_list) ListView sentenceList;
-  private SentenceActivity mActivity;
-
-  public SentenceFragment() {
-  }
+  private BaseActivity mActivity;
+  private LessonAdapter adapter;
+  private Realm realm;
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    mActivity = (SentenceActivity) getActivity();
+    mActivity = (BaseActivity) getActivity();
   }
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
