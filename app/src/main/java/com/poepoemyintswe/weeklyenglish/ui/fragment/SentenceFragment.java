@@ -11,10 +11,12 @@ import butterknife.InjectView;
 import com.poepoemyintswe.weeklyenglish.R;
 import com.poepoemyintswe.weeklyenglish.adapter.SentenceAdapter;
 import com.poepoemyintswe.weeklyenglish.db.Lesson;
-import com.poepoemyintswe.weeklyenglish.db.Sentence;
 import com.poepoemyintswe.weeklyenglish.ui.BaseActivity;
 import io.realm.Realm;
 import io.realm.RealmResults;
+
+import static com.poepoemyintswe.weeklyenglish.utils.LogUtils.LOGD;
+import static com.poepoemyintswe.weeklyenglish.utils.LogUtils.makeLogTag;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -24,10 +26,12 @@ public class SentenceFragment extends Fragment {
   private BaseActivity mActivity;
   private Realm realm;
   private SentenceAdapter adapter;
+  private final String TAG = makeLogTag(SentenceFragment.class);
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     mActivity = (BaseActivity) getActivity();
+    adapter = new SentenceAdapter();
     realm = Realm.getInstance(mActivity);
   }
 
@@ -37,14 +41,11 @@ public class SentenceFragment extends Fragment {
     ButterKnife.inject(this, view);
 
     mActivity.recyclerViewInit(sentenceList);
-    adapter = new SentenceAdapter(new SentenceAdapter.OnItemClickListener() {
-      @Override public void onItemClick(Sentence sentence) {
-
-      }
-    });
+    RealmResults<Lesson> results =
+        realm.where(Lesson.class).equalTo("title", "Would like to").findAll();
+    LOGD(TAG, "" + results.first().getSentences().size());
+    adapter.setData(results.first().getSentences());
     sentenceList.setAdapter(adapter);
-    RealmResults<Lesson> results = realm.where(Lesson.class).equalTo("title", "title").findAll();
-    adapter.setData(results.get(0).getSentences());
     return view;
   }
 }

@@ -20,6 +20,7 @@ public class SentenceActivity extends BaseActivity {
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     ButterKnife.inject(this);
+
     String[] colors = getPrimaryColor();
     toolbar.setBackgroundColor(Color.parseColor(colors[0]));
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
