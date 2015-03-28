@@ -5,7 +5,7 @@
     tools:context="com.poepoemyintswe.weeklyenglish.ui.fragment.SentenceFragment"
     >
 
-  <RecyclerView
+  <android.support.v7.widget.RecyclerView
       android:id="@+id/sentence_list"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
