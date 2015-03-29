@@ -11,12 +11,17 @@ import com.poepoemyintswe.weeklyenglish.R;
 import com.poepoemyintswe.weeklyenglish.db.Sentence;
 import io.realm.RealmList;
 
+import static com.poepoemyintswe.weeklyenglish.utils.LogUtils.LOGD;
+import static com.poepoemyintswe.weeklyenglish.utils.LogUtils.LOGE;
+import static com.poepoemyintswe.weeklyenglish.utils.LogUtils.makeLogTag;
+
 /**
  * Created by poepoe on 27/3/15.
  */
 public class SentenceAdapter extends RecyclerView.Adapter<SentenceAdapter.ViewHolder> {
 
   private RealmList<Sentence> sentences;
+  private final String TAG = makeLogTag(SentenceAdapter.class);
 
   public SentenceAdapter() {
     setHasStableIds(true);
@@ -30,6 +35,7 @@ public class SentenceAdapter extends RecyclerView.Adapter<SentenceAdapter.ViewHo
 
   @Override public void onBindViewHolder(ViewHolder holder, int position) {
     final Sentence sentence = sentences.get(position);
+    LOGE(TAG, sentence.getEnglish());
     holder.eng.setText(sentence.getEnglish());
     holder.my.setText(sentence.getMyanmar());
   }
@@ -40,6 +46,7 @@ public class SentenceAdapter extends RecyclerView.Adapter<SentenceAdapter.ViewHo
 
   public void setData(RealmList<Sentence> sentences) {
     this.sentences = sentences;
+    LOGD(TAG, "Data size" + sentences.size());
   }
 
   public static class ViewHolder extends RecyclerView.ViewHolder {
