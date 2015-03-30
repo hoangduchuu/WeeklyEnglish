@@ -12,6 +12,7 @@ import com.poepoemyintswe.weeklyenglish.R;
 import com.poepoemyintswe.weeklyenglish.adapter.SentenceAdapter;
 import com.poepoemyintswe.weeklyenglish.db.Lesson;
 import com.poepoemyintswe.weeklyenglish.ui.BaseActivity;
+import com.poepoemyintswe.weeklyenglish.ui.widget.DividerItemDecoration;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -41,6 +42,7 @@ public class SentenceFragment extends Fragment {
     ButterKnife.inject(this, view);
 
     mActivity.recyclerViewInit(sentenceList);
+    sentenceList.addItemDecoration(new DividerItemDecoration(mActivity, null));
     RealmResults<Lesson> results =
         realm.where(Lesson.class).equalTo("title", "Would like to").findAll();
     LOGD(TAG, "" + results.first().getSentences().size());
