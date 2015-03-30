@@ -34,6 +34,7 @@ public class SentenceAdapter extends RecyclerView.Adapter<SentenceAdapter.ViewHo
   }
 
   @Override public void onBindViewHolder(ViewHolder holder, int position) {
+    LOGE(TAG, "onBindViewHolder");
     final Sentence sentence = sentences.get(position);
     LOGE(TAG, sentence.getEnglish());
     holder.eng.setText(sentence.getEnglish());
@@ -41,7 +42,7 @@ public class SentenceAdapter extends RecyclerView.Adapter<SentenceAdapter.ViewHo
   }
 
   @Override public int getItemCount() {
-    return 0;
+    return sentences.size();
   }
 
   public void setData(RealmList<Sentence> sentences) {
