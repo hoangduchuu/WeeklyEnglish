@@ -1,6 +1,5 @@
 package com.poepoemyintswe.weeklyenglish.ui;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +11,7 @@ import android.view.WindowManager;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.poepoemyintswe.weeklyenglish.R;
+import com.poepoemyintswe.weeklyenglish.ui.fragment.SentenceFragment;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 public class SentenceActivity extends BaseActivity {
@@ -19,7 +19,17 @@ public class SentenceActivity extends BaseActivity {
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
     ButterKnife.inject(this);
+    if (savedInstanceState == null) {
+      SentenceFragment sentenceFragment = new SentenceFragment();
+      Bundle bundle = new Bundle();
+      bundle.putString("title", getIntent().getStringExtra("title"));
+      sentenceFragment.setArguments(bundle);
+      getSupportFragmentManager().beginTransaction()
+          .replace(R.id.container, sentenceFragment)
+          .commit();
+    }
 
     String[] colors = getPrimaryColor();
     toolbar.setBackgroundColor(Color.parseColor(colors[0]));
@@ -45,8 +55,7 @@ public class SentenceActivity extends BaseActivity {
   }
 
   @Override protected String getCustomTitle() {
-    Intent intent = getIntent();
-    return intent.getStringExtra("title");
+    return getIntent().getStringExtra("title");
   }
 
   @Override protected boolean needToolbar() {

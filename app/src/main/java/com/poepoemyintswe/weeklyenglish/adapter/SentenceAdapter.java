@@ -12,7 +12,6 @@ import com.poepoemyintswe.weeklyenglish.db.Sentence;
 import io.realm.RealmList;
 
 import static com.poepoemyintswe.weeklyenglish.utils.LogUtils.LOGD;
-import static com.poepoemyintswe.weeklyenglish.utils.LogUtils.LOGE;
 import static com.poepoemyintswe.weeklyenglish.utils.LogUtils.makeLogTag;
 
 /**
@@ -34,9 +33,7 @@ public class SentenceAdapter extends RecyclerView.Adapter<SentenceAdapter.ViewHo
   }
 
   @Override public void onBindViewHolder(ViewHolder holder, int position) {
-    LOGE(TAG, "onBindViewHolder");
     final Sentence sentence = sentences.get(position);
-    LOGE(TAG, sentence.getEnglish());
     holder.eng.setText(sentence.getEnglish());
     holder.my.setText(sentence.getMyanmar());
   }

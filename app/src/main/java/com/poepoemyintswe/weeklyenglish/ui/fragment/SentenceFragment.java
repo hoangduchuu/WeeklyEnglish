@@ -38,13 +38,13 @@ public class SentenceFragment extends Fragment {
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
+    String title = getArguments().getString("title");
     View view = inflater.inflate(R.layout.fragment_sentence, container, false);
     ButterKnife.inject(this, view);
 
     mActivity.recyclerViewInit(sentenceList);
     sentenceList.addItemDecoration(new DividerItemDecoration(mActivity, null));
-    RealmResults<Lesson> results =
-        realm.where(Lesson.class).equalTo("title", "Would like to").findAll();
+    RealmResults<Lesson> results = realm.where(Lesson.class).equalTo("title", title).findAll();
     LOGD(TAG, "" + results.first().getSentences().size());
     adapter.setData(results.first().getSentences());
     sentenceList.setAdapter(adapter);
